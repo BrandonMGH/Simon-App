@@ -1,2 +1,2 @@
-import Main from "./js/components/Main.jsx";
+import Main from "./js/Main.jsx";
 

@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import ReactDOM from "react-dom";
-import Test from './Test.jsx'
+import Test from './components/Test.jsx'
 
 export class Main extends Component {
     render() {
         return (
             <div>
                 <Test name="Brandon" title="Magician"/>
-                <p>test</p>
             </div>
         )
     }
