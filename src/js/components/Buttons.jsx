@@ -1,13 +1,27 @@
 import React from 'react'
-import { useState } from "react";
+import { useState, useEffect  } from "react";
 import styled from 'styled-components'
 
 export default function Buttons() {
+
     const [count, setCount] = useState(0);
+    
+
+   
+    useEffect(() => {
+       console.log(`You clicked ${count} times`);
+      });
+    
     return (
         <div>
             <h1>Count: {count}</h1>
+            <form>
+                <input
+              
+                ></input>
+            </form>
             <Button onClick={() => setCount(count + 1)} >I am a button</Button>
+            <p>{name}</p>
         </div>
     )
 }

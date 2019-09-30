@@ -7,17 +7,7 @@ export default function Test(props) {
         <div>
             <h1>{props.name}</h1>
             <p>{props.title}</p>
-            <div> 
-                <Buttons />
-                <Buttons />
-            </div>
-            <div>
-                <Buttons />
-                <Buttons />
-            </div>
-           
-
-            
+                <Buttons />  
         </div>
     )
 }
