@@ -6,6 +6,7 @@ export default function Buttons() {
 
     const [count, setCount] = useState(0);
     const [name, setName ] = useState("");
+    const [list, setList ] = useState([])
 
 
 
@@ -13,7 +14,8 @@ export default function Buttons() {
     useEffect(() => {
        console.log(`You clicked ${count} times`);
       });
-    
+
+   
     return (
         <div>
             <h1>Count: {count}</h1>
@@ -26,7 +28,10 @@ export default function Buttons() {
                 />
             </form>
             <Button onClick={() => setCount(count + 1)} >I am a button</Button>
-            <Button type="submit" onClick={()=> console.log(name)}>Post Name</Button>
+            <Button type="submit" onClick={()=> setList(name)}>Post Name</Button>
+            <ul>
+               <li>{list}</li>
+            </ul>
         </div>
     )
 }
