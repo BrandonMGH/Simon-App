@@ -2,7 +2,7 @@ import React from "react"
 
 // ** COMPONENTS ** //
 
-import Panels from './panels.js'
+import Panels from './panels/panels.js'
 
 export default function App (){
 

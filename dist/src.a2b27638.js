@@ -36114,7 +36114,31 @@ if ("development" !== 'production' && "development" !== 'test' && typeof window 
 
 var _default = styled;
 exports.default = _default;
-},{"stylis/stylis.min":"node_modules/stylis/stylis.min.js","stylis-rule-sheet":"node_modules/stylis-rule-sheet/index.js","react":"node_modules/react/index.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","react-is":"node_modules/react-is/index.js","memoize-one":"node_modules/memoize-one/dist/memoize-one.esm.js","prop-types":"node_modules/prop-types/index.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","merge-anything":"node_modules/merge-anything/dist/index.esm.js","process":"node_modules/process/browser.js"}],"src/components/panels.js":[function(require,module,exports) {
+},{"stylis/stylis.min":"node_modules/stylis/stylis.min.js","stylis-rule-sheet":"node_modules/stylis-rule-sheet/index.js","react":"node_modules/react/index.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","react-is":"node_modules/react-is/index.js","memoize-one":"node_modules/memoize-one/dist/memoize-one.esm.js","prop-types":"node_modules/prop-types/index.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","merge-anything":"node_modules/merge-anything/dist/index.esm.js","process":"node_modules/process/browser.js"}],"src/components/panels/panelsObject.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var panelsObject = {
+  panelsArray: [{
+    id: 1,
+    color: "Red"
+  }, {
+    id: 2,
+    color: "Blue"
+  }, {
+    id: 3,
+    color: "Green"
+  }, {
+    id: 4,
+    color: "Yellow"
+  }]
+};
+var _default = panelsObject;
+exports.default = _default;
+},{}],"src/components/panels/panels.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36122,54 +36146,28 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Panels;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
+var _panelsObject = _interopRequireDefault(require("./panelsObject.js"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _templateObject6() {
-  var data = _taggedTemplateLiteral(["\nbackground-color: Yellow\n"]);
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
-  _templateObject6 = function _templateObject6() {
-    return data;
-  };
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-  return data;
-}
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
-function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\nbackground-color: Green\n"]);
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
 
-  _templateObject5 = function _templateObject5() {
-    return data;
-  };
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
-  return data;
-}
-
-function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\nbackground-color: blue\n"]);
-
-  _templateObject4 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\nbackground-color: red; \n"]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\nwidth: 50%\npadding: 2.5%\nmargin: 2.5%\ntext-align: center; \nborder: solid 5px black; \n"]);
+  var data = _taggedTemplateLiteral(["\nwidth: 50%\npadding: 2.5%\nmargin: 2.5%\ntext-align: center; \nborder: solid 5px black; \nbackground-color: ", "\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -36192,17 +36190,35 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 var PanelWrapper = _styledComponents.default.section(_templateObject());
 
-var Panel = _styledComponents.default.section(_templateObject2());
-
-var RedPanel = (0, _styledComponents.default)(Panel)(_templateObject3());
-var BluePanel = (0, _styledComponents.default)(Panel)(_templateObject4());
-var GreenPanel = (0, _styledComponents.default)(Panel)(_templateObject5());
-var YellowPanel = (0, _styledComponents.default)(Panel)(_templateObject6());
+var Panel = _styledComponents.default.section(_templateObject2(), function (props) {
+  return props.inputColor;
+});
 
 function Panels() {
-  return _react.default.createElement("div", null, _react.default.createElement(PanelWrapper, null, _react.default.createElement(RedPanel, null, "Red"), _react.default.createElement(BluePanel, null, "Blue"), _react.default.createElement(GreenPanel, null, "Green"), _react.default.createElement(YellowPanel, null, "Yellow")), _react.default.createElement("button", null, "Start Button "));
+  var _useState = (0, _react.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      SimonSelection = _useState2[0],
+      updateSimonSelection = _useState2[1];
+
+  var functionTest = function functionTest() {
+    console.log(Math.floor(Math.random() * _panelsObject.default.panelsArray.length) + 1);
+    var updateSelection = Math.floor(Math.random() * _panelsObject.default.panelsArray.length) + 1;
+    SimonSelection.push(updateSelection);
+    console.log(SimonSelection);
+  };
+
+  functionTest();
+  return _react.default.createElement("div", null, _react.default.createElement(PanelWrapper, null, _panelsObject.default.panelsArray.map(function (properties) {
+    return _react.default.createElement(Panel, {
+      key: properties.id,
+      inputColor: properties.color,
+      id: properties.id
+    });
+  })), _react.default.createElement("button", {
+    onClick: functionTest
+  }, "Start Button "));
 }
-},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/components/app.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","./panelsObject.js":"src/components/panels/panelsObject.js"}],"src/components/app.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36212,7 +36228,7 @@ exports.default = App;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _panels = _interopRequireDefault(require("./panels.js"));
+var _panels = _interopRequireDefault(require("./panels/panels.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36220,7 +36236,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function App() {
   return _react.default.createElement(_panels.default, null);
 }
-},{"react":"node_modules/react/index.js","./panels.js":"src/components/panels.js"}],"src/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./panels/panels.js":"src/components/panels/panels.js"}],"src/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36269,7 +36285,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61322" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51788" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
