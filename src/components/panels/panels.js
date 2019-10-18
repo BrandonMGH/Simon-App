@@ -20,19 +20,38 @@ background-color: ${props => props.inputColor}
 export default function Panels() {
 
 
-    const [SimonSelection, updateSimonSelection] = useState([])
+    const [simonSelection, updateSimonSelection] = useState([])
     const [userSelection, updateSelection] = useState([])
 
-    let SimonStart = () => {
-        console.log(Math.floor(Math.random() * panelsObject.panelsArray.length) + 1)
+    let simonStart = () => {
         const updateSelection = Math.floor(Math.random() * panelsObject.panelsArray.length) + 1
-        SimonSelection.push(updateSelection)
-        console.log(SimonSelection)
+        simonSelection.push(updateSelection)
+        console.log(simonSelection)
     }
 
     let userChoice = (event) =>{
-        const id = event.target.id
-        console.log(id)
+        let id = event.target.id
+        let parsedID = parseInt(id)
+        userSelection.push(parsedID)
+        console.log(userSelection)
+    }
+
+    let scoreCompare = () => {
+        let trueTotal = 0; 
+        for(let i = 0; i < userSelection.length; i ++){
+            for(let j = 0; j < simonSelection.length; j ++){
+             console.log(userSelection[i],simonSelection[j])
+             if(userSelection[i]===simonSelection[j]){
+                 trueTotal ++; 
+             }
+            }
+        }
+
+        if(trueTotal === userSelection.length){
+            console.log("yay")
+        } else{
+            console.log("nay")
+        }
     }
 
     
@@ -43,8 +62,9 @@ export default function Panels() {
                     <Panel key={properties.id} inputColor={properties.color} id={properties.id} onClick={userChoice}></Panel>
                 ))}
             </PanelWrapper>
-            <button onClick={SimonStart}>Start Button </button>
-            <button onClick={userChoice}>Confirm Button  </button>
+            <button onClick={simonStart}>Start Button </button>
+            <button onClick={scoreCompare}>Confirm Button  </button>
+           
           
         </div>
     )

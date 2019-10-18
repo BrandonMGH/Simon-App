@@ -36197,7 +36197,7 @@ var Panel = _styledComponents.default.section(_templateObject2(), function (prop
 function Panels() {
   var _useState = (0, _react.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
-      SimonSelection = _useState2[0],
+      simonSelection = _useState2[0],
       updateSimonSelection = _useState2[1];
 
   var _useState3 = (0, _react.useState)([]),
@@ -36205,16 +36205,37 @@ function Panels() {
       userSelection = _useState4[0],
       updateSelection = _useState4[1];
 
-  var SimonStart = function SimonStart() {
-    console.log(Math.floor(Math.random() * _panelsObject.default.panelsArray.length) + 1);
+  var simonStart = function simonStart() {
     var updateSelection = Math.floor(Math.random() * _panelsObject.default.panelsArray.length) + 1;
-    SimonSelection.push(updateSelection);
-    console.log(SimonSelection);
+    simonSelection.push(updateSelection);
+    console.log(simonSelection);
   };
 
   var userChoice = function userChoice(event) {
     var id = event.target.id;
-    console.log(id);
+    var parsedID = parseInt(id);
+    userSelection.push(parsedID);
+    console.log(userSelection);
+  };
+
+  var scoreCompare = function scoreCompare() {
+    var trueTotal = 0;
+
+    for (var i = 0; i < userSelection.length; i++) {
+      for (var j = 0; j < simonSelection.length; j++) {
+        console.log(userSelection[i], simonSelection[j]);
+
+        if (userSelection[i] === simonSelection[j]) {
+          trueTotal++;
+        }
+      }
+    }
+
+    if (trueTotal === userSelection.length) {
+      console.log("yay");
+    } else {
+      console.log("nay");
+    }
   };
 
   return _react.default.createElement("div", null, _react.default.createElement(PanelWrapper, null, _panelsObject.default.panelsArray.map(function (properties) {
@@ -36225,9 +36246,9 @@ function Panels() {
       onClick: userChoice
     });
   })), _react.default.createElement("button", {
-    onClick: SimonStart
+    onClick: simonStart
   }, "Start Button "), _react.default.createElement("button", {
-    onClick: userChoice
+    onClick: scoreCompare
   }, "Confirm Button  "));
 }
 },{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","./panelsObject.js":"src/components/panels/panelsObject.js"}],"src/components/app.js":[function(require,module,exports) {
@@ -36297,7 +36318,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55666" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51379" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
