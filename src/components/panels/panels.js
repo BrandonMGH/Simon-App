@@ -56,9 +56,12 @@ export default function Panels() {
     let finalCompare = (trueTotal, arrLength) => {
         console.log(trueTotal, arrLength)
         if (trueTotal === arrLength) {
-            console.log("yay")
+            console.log("Congrats, you won!")
+            updateSelection([]);
         } else {
-            console.log("nay")
+            console.log("You lose")
+            updateSimonSelection([]);
+            updateSelection([]);
         }
     }
 

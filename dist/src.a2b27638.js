@@ -36240,9 +36240,12 @@ function Panels() {
     console.log(trueTotal, arrLength);
 
     if (trueTotal === arrLength) {
-      console.log("yay");
+      console.log("Congrats, you won!");
+      updateSelection([]);
     } else {
-      console.log("nay");
+      console.log("You lose");
+      updateSimonSelection([]);
+      updateSelection([]);
     }
   };
 
@@ -36326,7 +36329,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62588" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64893" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
