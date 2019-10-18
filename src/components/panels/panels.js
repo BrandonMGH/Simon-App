@@ -21,23 +21,31 @@ export default function Panels() {
 
 
     const [SimonSelection, updateSimonSelection] = useState([])
+    const [userSelection, updateSelection] = useState([])
 
-    let functionTest = () => {
+    let SimonStart = () => {
         console.log(Math.floor(Math.random() * panelsObject.panelsArray.length) + 1)
         const updateSelection = Math.floor(Math.random() * panelsObject.panelsArray.length) + 1
         SimonSelection.push(updateSelection)
         console.log(SimonSelection)
     }
 
-    functionTest();
+    let userChoice = (event) =>{
+        const id = event.target.id
+        console.log(id)
+    }
+
+    
     return (
         <div>
             <PanelWrapper>
                 {panelsObject.panelsArray.map(properties => (
-                    <Panel key={properties.id} inputColor={properties.color} id={properties.id}></Panel>
+                    <Panel key={properties.id} inputColor={properties.color} id={properties.id} onClick={userChoice}></Panel>
                 ))}
             </PanelWrapper>
-            <button onClick={functionTest}>Start Button </button>
+            <button onClick={SimonStart}>Start Button </button>
+            <button onClick={userChoice}>Confirm Button  </button>
+          
         </div>
     )
 }

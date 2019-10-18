@@ -36200,23 +36200,35 @@ function Panels() {
       SimonSelection = _useState2[0],
       updateSimonSelection = _useState2[1];
 
-  var functionTest = function functionTest() {
+  var _useState3 = (0, _react.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      userSelection = _useState4[0],
+      updateSelection = _useState4[1];
+
+  var SimonStart = function SimonStart() {
     console.log(Math.floor(Math.random() * _panelsObject.default.panelsArray.length) + 1);
     var updateSelection = Math.floor(Math.random() * _panelsObject.default.panelsArray.length) + 1;
     SimonSelection.push(updateSelection);
     console.log(SimonSelection);
   };
 
-  functionTest();
+  var userChoice = function userChoice(event) {
+    var id = event.target.id;
+    console.log(id);
+  };
+
   return _react.default.createElement("div", null, _react.default.createElement(PanelWrapper, null, _panelsObject.default.panelsArray.map(function (properties) {
     return _react.default.createElement(Panel, {
       key: properties.id,
       inputColor: properties.color,
-      id: properties.id
+      id: properties.id,
+      onClick: userChoice
     });
   })), _react.default.createElement("button", {
-    onClick: functionTest
-  }, "Start Button "));
+    onClick: SimonStart
+  }, "Start Button "), _react.default.createElement("button", {
+    onClick: userChoice
+  }, "Confirm Button  "));
 }
 },{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","./panelsObject.js":"src/components/panels/panelsObject.js"}],"src/components/app.js":[function(require,module,exports) {
 "use strict";
@@ -36285,7 +36297,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51788" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55666" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
