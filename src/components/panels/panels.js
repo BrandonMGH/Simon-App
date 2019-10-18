@@ -44,7 +44,7 @@ export default function Panels() {
         }
 
         for (let i = 0; i < simArrLength; i++) {
-            if (simonSelection[i] = userSelection[i]) {
+            if (simonSelection[i] === userSelection[i]) {
                 trueTotal++;
             }
         }
