@@ -29,7 +29,7 @@ export default function Panels() {
         console.log(simonSelection)
     }
 
-    let userChoice = (event) =>{
+    let userChoice = (event) => {
         let id = event.target.id
         let parsedID = parseInt(id)
         userSelection.push(parsedID)
@@ -37,24 +37,31 @@ export default function Panels() {
     }
 
     let scoreCompare = () => {
-        let trueTotal = 0; 
-        for(let i = 0; i < userSelection.length; i ++){
-            for(let j = 0; j < simonSelection.length; j ++){
-             console.log(userSelection[i],simonSelection[j])
-             if(userSelection[i]===simonSelection[j]){
-                 trueTotal ++; 
-             }
-            }
+        let trueTotal = 0;
+        let simArrLength = simonSelection.length
+        if (simonSelection.length !== userSelection.length) {
+            return finalCompare(trueTotal, simArrLength)
         }
 
-        if(trueTotal === userSelection.length){
+        for (let i = 0; i < simArrLength; i++) {
+            if (simonSelection[i] = userSelection[i]) {
+                trueTotal++;
+            }
+        }
+        console.log(trueTotal)
+        return finalCompare(trueTotal, simArrLength)
+
+    }
+
+    let finalCompare = (trueTotal, arrLength) => {
+        console.log(trueTotal, arrLength)
+        if (trueTotal === arrLength) {
             console.log("yay")
-        } else{
+        } else {
             console.log("nay")
         }
     }
 
-    
     return (
         <div>
             <PanelWrapper>
@@ -64,8 +71,8 @@ export default function Panels() {
             </PanelWrapper>
             <button onClick={simonStart}>Start Button </button>
             <button onClick={scoreCompare}>Confirm Button  </button>
-           
-          
+
+
         </div>
     )
 }

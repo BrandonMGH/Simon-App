@@ -36220,18 +36220,26 @@ function Panels() {
 
   var scoreCompare = function scoreCompare() {
     var trueTotal = 0;
+    var simArrLength = simonSelection.length;
 
-    for (var i = 0; i < userSelection.length; i++) {
-      for (var j = 0; j < simonSelection.length; j++) {
-        console.log(userSelection[i], simonSelection[j]);
+    if (simonSelection.length !== userSelection.length) {
+      return finalCompare(trueTotal, simArrLength);
+    }
 
-        if (userSelection[i] === simonSelection[j]) {
-          trueTotal++;
-        }
+    for (var i = 0; i < simArrLength; i++) {
+      if (simonSelection[i] = userSelection[i]) {
+        trueTotal++;
       }
     }
 
-    if (trueTotal === userSelection.length) {
+    console.log(trueTotal);
+    return finalCompare(trueTotal, simArrLength);
+  };
+
+  var finalCompare = function finalCompare(trueTotal, arrLength) {
+    console.log(trueTotal, arrLength);
+
+    if (trueTotal === arrLength) {
       console.log("yay");
     } else {
       console.log("nay");
@@ -36318,7 +36326,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51379" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53451" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
