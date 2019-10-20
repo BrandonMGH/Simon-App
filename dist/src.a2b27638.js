@@ -36114,31 +36114,7 @@ if ("development" !== 'production' && "development" !== 'test' && typeof window 
 
 var _default = styled;
 exports.default = _default;
-},{"stylis/stylis.min":"node_modules/stylis/stylis.min.js","stylis-rule-sheet":"node_modules/stylis-rule-sheet/index.js","react":"node_modules/react/index.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","react-is":"node_modules/react-is/index.js","memoize-one":"node_modules/memoize-one/dist/memoize-one.esm.js","prop-types":"node_modules/prop-types/index.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","merge-anything":"node_modules/merge-anything/dist/index.esm.js","process":"node_modules/process/browser.js"}],"src/components/panels/panelsObject.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var panelsObject = {
-  panelsArray: [{
-    id: 1,
-    color: "Red"
-  }, {
-    id: 2,
-    color: "Blue"
-  }, {
-    id: 3,
-    color: "Green"
-  }, {
-    id: 4,
-    color: "Yellow"
-  }]
-};
-var _default = panelsObject;
-exports.default = _default;
-},{}],"src/components/panels/panels.js":[function(require,module,exports) {
+},{"stylis/stylis.min":"node_modules/stylis/stylis.min.js","stylis-rule-sheet":"node_modules/stylis-rule-sheet/index.js","react":"node_modules/react/index.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","react-is":"node_modules/react-is/index.js","memoize-one":"node_modules/memoize-one/dist/memoize-one.esm.js","prop-types":"node_modules/prop-types/index.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","merge-anything":"node_modules/merge-anything/dist/index.esm.js","process":"node_modules/process/browser.js"}],"src/components/panels/panels.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36149,8 +36125,6 @@ exports.default = Panels;
 var _react = _interopRequireWildcard(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-var _panelsObject = _interopRequireDefault(require("./panelsObject.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36167,7 +36141,7 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\nwidth: 50%\npadding: 2.5%\nmargin: 2.5%\ntext-align: center; \nborder: solid 5px black; \nbackground-color: ", "\n"]);
+  var data = _taggedTemplateLiteral(["\nwidth: 50%\npadding: 2.5%\nmargin: 2.5%\ntext-align: center; \nborder: solid 5px black; \nbackground-color: ", "\nopacity: ", "\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -36188,13 +36162,17 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
+// ** STYLED COMPONENTS ** // 
 var PanelWrapper = _styledComponents.default.section(_templateObject());
 
 var Panel = _styledComponents.default.section(_templateObject2(), function (props) {
   return props.inputColor;
+}, function (props) {
+  return props.opacity;
 });
 
 function Panels() {
+  // ** REACT HOOKS ** // 
   var _useState = (0, _react.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       simonSelection = _useState2[0],
@@ -36205,11 +36183,25 @@ function Panels() {
       userSelection = _useState4[0],
       updateSelection = _useState4[1];
 
+  var _useState5 = (0, _react.useState)([".25", ".50", ".75", "1"]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      panelOpacity = _useState6[0],
+      updateOpacity = _useState6[1];
+
+  var _useState7 = (0, _react.useState)([1, 2, 3, 4]),
+      _useState8 = _slicedToArray(_useState7, 2),
+      panelValue = _useState8[0],
+      updatePanelValue = _useState8[1];
+
   var simonStart = function simonStart() {
-    var updateSelection = Math.floor(Math.random() * _panelsObject.default.panelsArray.length) + 1;
+    console.log();
+    var updateSelection = Math.floor(Math.random() * panelsObject.panelsArray.length) + 1;
     simonSelection.push(updateSelection);
     console.log(simonSelection);
+    highlightedPanel();
   };
+
+  var highlightedPanel = function highlightedPanel(updateSelection) {};
 
   var userChoice = function userChoice(event) {
     var id = event.target.id;
@@ -36249,20 +36241,29 @@ function Panels() {
     }
   };
 
-  return _react.default.createElement("div", null, _react.default.createElement(PanelWrapper, null, _panelsObject.default.panelsArray.map(function (properties) {
-    return _react.default.createElement(Panel, {
-      key: properties.id,
-      inputColor: properties.color,
-      id: properties.id,
-      onClick: userChoice
-    });
+  return _react.default.createElement("div", null, _react.default.createElement(PanelWrapper, null, _react.default.createElement(Panel, {
+    opacity: panelOpacity[0],
+    inputColor: "red",
+    onClick: userChoice
+  }), _react.default.createElement(Panel, {
+    opacity: panelOpacity[1],
+    inputColor: "blue",
+    onClick: userChoice
+  }), _react.default.createElement(Panel, {
+    opacity: panelOpacity[2],
+    inputColor: "green",
+    onClick: userChoice
+  }), _react.default.createElement(Panel, {
+    opacity: panelOpacity[3],
+    inputColor: "yellow",
+    onClick: userChoice
   })), _react.default.createElement("button", {
     onClick: simonStart
   }, "Start Button "), _react.default.createElement("button", {
     onClick: scoreCompare
   }, "Confirm Button  "));
 }
-},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","./panelsObject.js":"src/components/panels/panelsObject.js"}],"src/components/app.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/components/app.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36329,7 +36330,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64893" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58319" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
