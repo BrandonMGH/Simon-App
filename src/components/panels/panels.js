@@ -21,25 +21,37 @@ opacity: ${props => props.opacity}
 
 export default function Panels() {
 
-// ** REACT HOOKS ** // 
+    // ** REACT HOOKS ** // 
     const [simonSelection, updateSimonSelection] = useState([])
     const [userSelection, updateSelection] = useState([])
-    const [panelOpacity, updateOpacity] = useState([".25",".50", ".75", "1"])
-    const [panelValue, updatePanelValue] = useState([1,2,3,4])
-    
- 
+    const [panelOpacity, updateOpacity] = useState([".25", ".25", ".25", ".25"])
+
+
+
 
     let simonStart = () => {
-        console.log()
-        const updateSelection = Math.floor(Math.random() * panelsObject.panelsArray.length) + 1
+        const updateSelection = Math.floor(Math.random() * panelOpacity.length) + 1
+            if (updateSelection === 1) {
+                updateOpacity(["1", ".25", ".25", ".25"])
+            } else if (updateSelection === 2) {
+                updateOpacity([".25", "1", ".25", ".25"])
+            } else if (updateSelection === 3) {
+                updateOpacity([".25", ".25", "1", ".25"])
+            } else if (updateSelection === 4) {
+                updateOpacity([".25", ".25", ".25", "1"])
+            }
+            setInterval(function () { panelReset() }, 3000);
+     
         simonSelection.push(updateSelection)
         console.log(simonSelection)
-        highlightedPanel()
+
     }
 
-    let highlightedPanel = (updateSelection) => {
-        
+    let panelReset = () => {
+        updateOpacity([".25", ".25", ".25", ".25"])
     }
+
+
 
     let userChoice = (event) => {
         let id = event.target.id
@@ -80,10 +92,10 @@ export default function Panels() {
     return (
         <div>
             <PanelWrapper>
-            <Panel  opacity={panelOpacity[0]} inputColor="red"  onClick={userChoice}></Panel>
-            <Panel  opacity={panelOpacity[1]} inputColor="blue"  onClick={userChoice}></Panel>
-            <Panel  opacity={panelOpacity[2]} inputColor="green"  onClick={userChoice}></Panel>
-            <Panel  opacity={panelOpacity[3]} inputColor="yellow"  onClick={userChoice}></Panel>
+                <Panel opacity={panelOpacity[0]} inputColor="red" onClick={userChoice}></Panel>
+                <Panel opacity={panelOpacity[1]} inputColor="blue" onClick={userChoice}></Panel>
+                <Panel opacity={panelOpacity[2]} inputColor="green" onClick={userChoice}></Panel>
+                <Panel opacity={panelOpacity[3]} inputColor="yellow" onClick={userChoice}></Panel>
             </PanelWrapper>
             <button onClick={simonStart}>Start Button </button>
             <button onClick={scoreCompare}>Confirm Button  </button>

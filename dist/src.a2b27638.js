@@ -36183,25 +36183,34 @@ function Panels() {
       userSelection = _useState4[0],
       updateSelection = _useState4[1];
 
-  var _useState5 = (0, _react.useState)([".25", ".50", ".75", "1"]),
+  var _useState5 = (0, _react.useState)([".25", ".25", ".25", ".25"]),
       _useState6 = _slicedToArray(_useState5, 2),
       panelOpacity = _useState6[0],
       updateOpacity = _useState6[1];
 
-  var _useState7 = (0, _react.useState)([1, 2, 3, 4]),
-      _useState8 = _slicedToArray(_useState7, 2),
-      panelValue = _useState8[0],
-      updatePanelValue = _useState8[1];
-
   var simonStart = function simonStart() {
-    console.log();
-    var updateSelection = Math.floor(Math.random() * panelsObject.panelsArray.length) + 1;
+    var updateSelection = Math.floor(Math.random() * panelOpacity.length) + 1;
+
+    if (updateSelection === 1) {
+      updateOpacity(["1", ".25", ".25", ".25"]);
+    } else if (updateSelection === 2) {
+      updateOpacity([".25", "1", ".25", ".25"]);
+    } else if (updateSelection === 3) {
+      updateOpacity([".25", ".25", "1", ".25"]);
+    } else if (updateSelection === 4) {
+      updateOpacity([".25", ".25", ".25", "1"]);
+    }
+
+    setInterval(function () {
+      panelReset();
+    }, 3000);
     simonSelection.push(updateSelection);
     console.log(simonSelection);
-    highlightedPanel();
   };
 
-  var highlightedPanel = function highlightedPanel(updateSelection) {};
+  var panelReset = function panelReset() {
+    updateOpacity([".25", ".25", ".25", ".25"]);
+  };
 
   var userChoice = function userChoice(event) {
     var id = event.target.id;
@@ -36330,7 +36339,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58319" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50826" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
