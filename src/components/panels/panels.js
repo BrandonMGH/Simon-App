@@ -31,26 +31,45 @@ export default function Panels() {
 
     let simonStart = () => {
         const updateSelection = Math.floor(Math.random() * panelOpacity.length) + 1
-            if (updateSelection === 1) {
-                updateOpacity(["1", ".25", ".25", ".25"])
-            } else if (updateSelection === 2) {
-                updateOpacity([".25", "1", ".25", ".25"])
-            } else if (updateSelection === 3) {
-                updateOpacity([".25", ".25", "1", ".25"])
-            } else if (updateSelection === 4) {
-                updateOpacity([".25", ".25", ".25", "1"])
-            }
-            setInterval(function () { panelReset() }, 3000);
-     
         simonSelection.push(updateSelection)
         console.log(simonSelection)
+        panelSelection(simonSelection)
+    }
+
+    let panelSelection = (n) => {
+        console.log(n)
+
+        let myVar; 
+        
+        for (let i = 0; i < n.length; i++) {
+            setTimeout(function () { 
+                if (simonSelection[i] === 1) {
+                    // updateOpacity(["1", ".25", ".25", ".25"])
+                    console.log(n[i])
+                } else if (simonSelection[i] === 2) {
+                    // updateOpacity([".25", "1", ".25", ".25"])
+                    console.log(n[i])
+                   
+                } else if (simonSelection[i] === 3) {
+                    // updateOpacity([".25", ".25", "1", ".25"])
+                    console.log(n[i])
+                   
+                } else if (simonSelection[i] === 4) {
+                    // updateOpacity([".25", ".25", ".25", "1"])
+                    console.log(n[i])
+             
+                }
+
+            }, 2000)
+            // setInterval(function () { panelReset() }, 5000); 
+        }
 
     }
 
-    let panelReset = () => {
+    let panelReset = (PanelReset) => {
         updateOpacity([".25", ".25", ".25", ".25"])
+        clearInterval(PanelReset)
     }
-
 
 
     let userChoice = (event) => {
@@ -92,10 +111,10 @@ export default function Panels() {
     return (
         <div>
             <PanelWrapper>
-                <Panel opacity={panelOpacity[0]} inputColor="red" onClick={userChoice}></Panel>
-                <Panel opacity={panelOpacity[1]} inputColor="blue" onClick={userChoice}></Panel>
-                <Panel opacity={panelOpacity[2]} inputColor="green" onClick={userChoice}></Panel>
-                <Panel opacity={panelOpacity[3]} inputColor="yellow" onClick={userChoice}></Panel>
+                <Panel opacity={panelOpacity[0]} inputColor="red" onClick={userChoice} id={1}></Panel>
+                <Panel opacity={panelOpacity[1]} inputColor="blue" onClick={userChoice} id={2}></Panel>
+                <Panel opacity={panelOpacity[2]} inputColor="green" onClick={userChoice} id={3}></Panel>
+                <Panel opacity={panelOpacity[3]} inputColor="yellow" onClick={userChoice} id={4}></Panel>
             </PanelWrapper>
             <button onClick={simonStart}>Start Button </button>
             <button onClick={scoreCompare}>Confirm Button  </button>

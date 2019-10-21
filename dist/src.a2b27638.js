@@ -36190,26 +36190,41 @@ function Panels() {
 
   var simonStart = function simonStart() {
     var updateSelection = Math.floor(Math.random() * panelOpacity.length) + 1;
-
-    if (updateSelection === 1) {
-      updateOpacity(["1", ".25", ".25", ".25"]);
-    } else if (updateSelection === 2) {
-      updateOpacity([".25", "1", ".25", ".25"]);
-    } else if (updateSelection === 3) {
-      updateOpacity([".25", ".25", "1", ".25"]);
-    } else if (updateSelection === 4) {
-      updateOpacity([".25", ".25", ".25", "1"]);
-    }
-
-    setInterval(function () {
-      panelReset();
-    }, 3000);
     simonSelection.push(updateSelection);
     console.log(simonSelection);
+    panelSelection(simonSelection);
   };
 
-  var panelReset = function panelReset() {
+  var panelSelection = function panelSelection(n) {
+    console.log(n);
+    var myVar;
+
+    var _loop = function _loop(i) {
+      setTimeout(function () {
+        if (simonSelection[i] === 1) {
+          // updateOpacity(["1", ".25", ".25", ".25"])
+          console.log(n[i]);
+        } else if (simonSelection[i] === 2) {
+          // updateOpacity([".25", "1", ".25", ".25"])
+          console.log(n[i]);
+        } else if (simonSelection[i] === 3) {
+          // updateOpacity([".25", ".25", "1", ".25"])
+          console.log(n[i]);
+        } else if (simonSelection[i] === 4) {
+          // updateOpacity([".25", ".25", ".25", "1"])
+          console.log(n[i]);
+        }
+      }, 2000); // setInterval(function () { panelReset() }, 5000); 
+    };
+
+    for (var i = 0; i < n.length; i++) {
+      _loop(i);
+    }
+  };
+
+  var panelReset = function panelReset(PanelReset) {
     updateOpacity([".25", ".25", ".25", ".25"]);
+    clearInterval(PanelReset);
   };
 
   var userChoice = function userChoice(event) {
@@ -36253,19 +36268,23 @@ function Panels() {
   return _react.default.createElement("div", null, _react.default.createElement(PanelWrapper, null, _react.default.createElement(Panel, {
     opacity: panelOpacity[0],
     inputColor: "red",
-    onClick: userChoice
+    onClick: userChoice,
+    id: 1
   }), _react.default.createElement(Panel, {
     opacity: panelOpacity[1],
     inputColor: "blue",
-    onClick: userChoice
+    onClick: userChoice,
+    id: 2
   }), _react.default.createElement(Panel, {
     opacity: panelOpacity[2],
     inputColor: "green",
-    onClick: userChoice
+    onClick: userChoice,
+    id: 3
   }), _react.default.createElement(Panel, {
     opacity: panelOpacity[3],
     inputColor: "yellow",
-    onClick: userChoice
+    onClick: userChoice,
+    id: 4
   })), _react.default.createElement("button", {
     onClick: simonStart
   }, "Start Button "), _react.default.createElement("button", {
@@ -36339,7 +36358,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50826" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54624" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
