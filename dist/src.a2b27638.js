@@ -36132,14 +36132,6 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 function _templateObject2() {
   var data = _taggedTemplateLiteral(["\nwidth: 50%\npadding: 2.5%\nmargin: 2.5%\ntext-align: center; \nborder: solid 5px black; \nbackground-color: ", "\nopacity: ", "\n"]);
 
@@ -36172,125 +36164,15 @@ var Panel = _styledComponents.default.section(_templateObject2(), function (prop
 });
 
 function Panels() {
-  // ** REACT HOOKS ** // 
-  var _useState = (0, _react.useState)([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      simonSelection = _useState2[0],
-      updateSimonSelection = _useState2[1];
-
-  var _useState3 = (0, _react.useState)([]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      userSelection = _useState4[0],
-      updateSelection = _useState4[1];
-
-  var _useState5 = (0, _react.useState)([".25", ".25", ".25", ".25"]),
-      _useState6 = _slicedToArray(_useState5, 2),
-      panelOpacity = _useState6[0],
-      updateOpacity = _useState6[1];
-
-  var simonStart = function simonStart() {
-    var updateSelection = Math.floor(Math.random() * panelOpacity.length) + 1;
-    simonSelection.push(updateSelection);
-    console.log(simonSelection);
-    panelSelection(simonSelection.length);
-  };
-
-  var panelSelection = function panelSelection(arrLength) {
-    console.log(arrLength);
-
-    if (arrLength > 0) {
-      for (var i = 0; i < arrLength; i++) {
-        if (simonSelection[i] === 1) {
-          updateOpacity(["1", ".25", ".25", ".25"]); // console.log(simonSelection[i])
-
-          setTimeout(panelReset, 1000);
-        } else if (simonSelection[i] === 2) {
-          updateOpacity([".25", "1", ".25", ".25"]); // console.log(simonSelection[i])
-
-          setTimeout(panelReset, 1000);
-        } else if (simonSelection[i] === 3) {
-          updateOpacity([".25", ".25", "1", ".25"]); // console.log(simonSelection[i])
-
-          setTimeout(panelReset, 1000);
-        } else if (simonSelection[i] === 4) {
-          updateOpacity([".25", ".25", ".25", "1"]); // console.log(simonSelection[i])
-
-          setTimeout(panelReset, 1000);
-        }
-      }
-    }
-  };
-
-  var panelReset = function panelReset() {
-    var n = simonSelection.length;
-    updateOpacity([".25", ".25", ".25", ".25"]);
-    panelSelection(n - 1);
-  };
-
-  var userChoice = function userChoice(event) {
-    var id = event.target.id;
-    var parsedID = parseInt(id);
-    userSelection.push(parsedID);
-    console.log(userSelection);
-  };
-
-  var scoreCompare = function scoreCompare() {
-    var trueTotal = 0;
-    var simArrLength = simonSelection.length;
-
-    if (simonSelection.length !== userSelection.length) {
-      return finalCompare(trueTotal, simArrLength);
-    }
-
-    for (var i = 0; i < simArrLength; i++) {
-      if (simonSelection[i] === userSelection[i]) {
-        trueTotal++;
-      }
-    }
-
-    console.log(trueTotal);
-    return finalCompare(trueTotal, simArrLength);
-  };
-
-  var finalCompare = function finalCompare(trueTotal, arrLength) {
-    console.log(trueTotal, arrLength);
-
-    if (trueTotal === arrLength) {
-      console.log("Congrats, you won!");
-      updateSelection([]);
-      simonStart();
-    } else {
-      console.log("You lose");
-      updateSimonSelection([]);
-      updateSelection([]);
-    }
-  };
-
   return _react.default.createElement("div", null, _react.default.createElement(PanelWrapper, null, _react.default.createElement(Panel, {
-    opacity: panelOpacity[0],
-    inputColor: "red",
-    onClick: userChoice,
-    id: 1
+    inputColor: "red"
   }), _react.default.createElement(Panel, {
-    opacity: panelOpacity[1],
-    inputColor: "blue",
-    onClick: userChoice,
-    id: 2
+    inputColor: "red"
   }), _react.default.createElement(Panel, {
-    opacity: panelOpacity[2],
-    inputColor: "green",
-    onClick: userChoice,
-    id: 3
+    inputColor: "red"
   }), _react.default.createElement(Panel, {
-    opacity: panelOpacity[3],
-    inputColor: "yellow",
-    onClick: userChoice,
-    id: 4
-  })), _react.default.createElement("button", {
-    onClick: simonStart
-  }, "Start Button "), _react.default.createElement("button", {
-    onClick: scoreCompare
-  }, "Confirm Button  "));
+    inputColor: "red"
+  })), _react.default.createElement("button", null, "Start Button "), _react.default.createElement("button", null, "Confirm Button  "));
 }
 },{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/components/app.js":[function(require,module,exports) {
 "use strict";
@@ -36359,7 +36241,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65481" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62827" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
