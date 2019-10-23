@@ -36132,6 +36132,14 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function _templateObject2() {
   var data = _taggedTemplateLiteral(["\nwidth: 50%\npadding: 2.5%\nmargin: 2.5%\ntext-align: center; \nborder: solid 5px black; \nbackground-color: ", "\nopacity: ", "\n"]);
 
@@ -36164,6 +36172,110 @@ var Panel = _styledComponents.default.section(_templateObject2(), function (prop
 });
 
 function Panels() {
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      powerState = _useState2[0],
+      setPower = _useState2[1];
+
+  var _useState3 = (0, _react.useState)('Off'),
+      _useState4 = _slicedToArray(_useState3, 2),
+      onText = _useState4[0],
+      setOnText = _useState4[1];
+
+  var _useState5 = (0, _react.useState)("-"),
+      _useState6 = _slicedToArray(_useState5, 2),
+      counterText = _useState6[0],
+      updateCounterText = _useState6[1];
+
+  var _useState7 = (0, _react.useState)(true),
+      _useState8 = _slicedToArray(_useState7, 2),
+      win = _useState8[0],
+      winSet = _useState8[1];
+
+  var _useState9 = (0, _react.useState)([]),
+      _useState10 = _slicedToArray(_useState9, 2),
+      simonSelection = _useState10[0],
+      setSimonSelection = _useState10[1];
+
+  var _useState11 = (0, _react.useState)([]),
+      _useState12 = _slicedToArray(_useState11, 2),
+      playerSelection = _useState12[0],
+      setPlayerSelection = _useState12[1];
+
+  var _useState13 = (0, _react.useState)(0),
+      _useState14 = _slicedToArray(_useState13, 2),
+      panelFlashCount = _useState14[0],
+      updateFlashCount = _useState14[1];
+
+  var _useState15 = (0, _react.useState)(0),
+      _useState16 = _slicedToArray(_useState15, 2),
+      intervalId = _useState16[0],
+      setintervaID = _useState16[1];
+
+  var _useState17 = (0, _react.useState)(1),
+      _useState18 = _slicedToArray(_useState17, 2),
+      turnCount = _useState18[0],
+      updateTurnCount = _useState18[1];
+
+  var _useState19 = (0, _react.useState)(true),
+      _useState20 = _slicedToArray(_useState19, 2),
+      good = _useState20[0],
+      updateGood = _useState20[1]; // let order = [];
+  // let playerOrder = [];
+  // let flash;
+  // let turn;
+  // let good;
+
+
+  var compTurn; // let intervalId;
+  // let strict = false;
+  // let noise = true;
+  // let on = false;
+  // let win;
+
+  var power = function power() {
+    if (powerState === false) {
+      setPower(true);
+      setOnText("On"); // console.log(on)
+
+      updateCounterText("__");
+    } else {
+      setPower(false);
+      setOnText("Off"); // console.log(on)
+
+      updateCounterText("-");
+    }
+  };
+
+  console.log(powerState);
+
+  var startSimon = function startSimon() {
+    if (powerState) {
+      console.log("game has started");
+      play();
+    } else {
+      console.log("Power on game first");
+    }
+  };
+
+  var play = function play() {
+    winSet(false);
+    setSimonSelection([]);
+    setPlayerSelection([]);
+    updateFlashCount(0);
+    setintervaID(0);
+    updateTurnCount(1);
+    updateCounterText(1);
+    updateGood(true);
+
+    for (var i = 0; i < 25; i++) {
+      simonSelection.push(Math.floor(Math.random() * 4) + 1);
+    } // setintervaID(setInterval(gameTurn, 800))
+
+
+    console.log(simonSelection);
+  };
+
   return _react.default.createElement("div", null, _react.default.createElement(PanelWrapper, null, _react.default.createElement(Panel, {
     inputColor: "red"
   }), _react.default.createElement(Panel, {
@@ -36172,7 +36284,11 @@ function Panels() {
     inputColor: "red"
   }), _react.default.createElement(Panel, {
     inputColor: "red"
-  })), _react.default.createElement("button", null, "Start Button "), _react.default.createElement("button", null, "Confirm Button  "));
+  })), _react.default.createElement("button", {
+    onClick: startSimon
+  }, "Start Button "), _react.default.createElement("p", null, counterText), _react.default.createElement("button", {
+    onClick: power
+  }, onText));
 }
 },{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/components/app.js":[function(require,module,exports) {
 "use strict";
@@ -36241,7 +36357,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62827" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51429" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
