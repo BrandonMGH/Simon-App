@@ -36172,123 +36172,125 @@ var Panel = _styledComponents.default.section(_templateObject2(), function (prop
 });
 
 function Panels() {
-  var _useState = (0, _react.useState)(false),
+  // ** REACT HOOKS ** // 
+  var _useState = (0, _react.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
-      powerState = _useState2[0],
-      setPower = _useState2[1];
+      simonSelection = _useState2[0],
+      updateSimonSelection = _useState2[1];
 
-  var _useState3 = (0, _react.useState)('Off'),
+  var _useState3 = (0, _react.useState)([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      onText = _useState4[0],
-      setOnText = _useState4[1];
+      userSelection = _useState4[0],
+      updateSelection = _useState4[1];
 
-  var _useState5 = (0, _react.useState)("-"),
+  var _useState5 = (0, _react.useState)([".25", ".25", ".25", ".25"]),
       _useState6 = _slicedToArray(_useState5, 2),
-      counterText = _useState6[0],
-      updateCounterText = _useState6[1];
+      panelOpacity = _useState6[0],
+      updateOpacity = _useState6[1];
 
-  var _useState7 = (0, _react.useState)(true),
-      _useState8 = _slicedToArray(_useState7, 2),
-      win = _useState8[0],
-      winSet = _useState8[1];
-
-  var _useState9 = (0, _react.useState)([]),
-      _useState10 = _slicedToArray(_useState9, 2),
-      simonSelection = _useState10[0],
-      setSimonSelection = _useState10[1];
-
-  var _useState11 = (0, _react.useState)([]),
-      _useState12 = _slicedToArray(_useState11, 2),
-      playerSelection = _useState12[0],
-      setPlayerSelection = _useState12[1];
-
-  var _useState13 = (0, _react.useState)(0),
-      _useState14 = _slicedToArray(_useState13, 2),
-      panelFlashCount = _useState14[0],
-      updateFlashCount = _useState14[1];
-
-  var _useState15 = (0, _react.useState)(0),
-      _useState16 = _slicedToArray(_useState15, 2),
-      intervalId = _useState16[0],
-      setintervaID = _useState16[1];
-
-  var _useState17 = (0, _react.useState)(1),
-      _useState18 = _slicedToArray(_useState17, 2),
-      turnCount = _useState18[0],
-      updateTurnCount = _useState18[1];
-
-  var _useState19 = (0, _react.useState)(true),
-      _useState20 = _slicedToArray(_useState19, 2),
-      good = _useState20[0],
-      updateGood = _useState20[1]; // let order = [];
-  // let playerOrder = [];
-  // let flash;
-  // let turn;
-  // let good;
-
-
-  var compTurn; // let intervalId;
-  // let strict = false;
-  // let noise = true;
-  // let on = false;
-  // let win;
-
-  var power = function power() {
-    if (powerState === false) {
-      setPower(true);
-      setOnText("On"); // console.log(on)
-
-      updateCounterText("__");
-    } else {
-      setPower(false);
-      setOnText("Off"); // console.log(on)
-
-      updateCounterText("-");
-    }
-  };
-
-  console.log(powerState);
-
-  var startSimon = function startSimon() {
-    if (powerState) {
-      console.log("game has started");
-      play();
-    } else {
-      console.log("Power on game first");
-    }
-  };
-
-  var play = function play() {
-    winSet(false);
-    setSimonSelection([]);
-    setPlayerSelection([]);
-    updateFlashCount(0);
-    setintervaID(0);
-    updateTurnCount(1);
-    updateCounterText(1);
-    updateGood(true);
-
-    for (var i = 0; i < 25; i++) {
-      simonSelection.push(Math.floor(Math.random() * 4) + 1);
-    } // setintervaID(setInterval(gameTurn, 800))
-
-
+  var simonStart = function simonStart() {
+    var updateSelection = Math.floor(Math.random() * panelOpacity.length) + 1;
+    simonSelection.push(updateSelection);
     console.log(simonSelection);
+    panelSelection(simonSelection.length);
+  };
+
+  var panelSelection = function panelSelection(arrLength) {
+    console.log(arrLength);
+
+    if (arrLength > 0) {
+      for (var i = 0; i < arrLength; i++) {
+        if (simonSelection[i] === 1) {
+          updateOpacity(["1", ".25", ".25", ".25"]); // console.log(simonSelection[i])
+
+          setTimeout(panelReset, 1000);
+        } else if (simonSelection[i] === 2) {
+          updateOpacity([".25", "1", ".25", ".25"]); // console.log(simonSelection[i])
+
+          setTimeout(panelReset, 1000);
+        } else if (simonSelection[i] === 3) {
+          updateOpacity([".25", ".25", "1", ".25"]); // console.log(simonSelection[i])
+
+          setTimeout(panelReset, 1000);
+        } else if (simonSelection[i] === 4) {
+          updateOpacity([".25", ".25", ".25", "1"]); // console.log(simonSelection[i])
+
+          setTimeout(panelReset, 1000);
+        }
+      }
+    }
+  };
+
+  var panelReset = function panelReset() {
+    var n = simonSelection.length;
+    updateOpacity([".25", ".25", ".25", ".25"]);
+    panelSelection(n - 1);
+  };
+
+  var userChoice = function userChoice(event) {
+    var id = event.target.id;
+    var parsedID = parseInt(id);
+    userSelection.push(parsedID);
+    console.log(userSelection);
+  };
+
+  var scoreCompare = function scoreCompare() {
+    var trueTotal = 0;
+    var simArrLength = simonSelection.length;
+
+    if (simonSelection.length !== userSelection.length) {
+      return finalCompare(trueTotal, simArrLength);
+    }
+
+    for (var i = 0; i < simArrLength; i++) {
+      if (simonSelection[i] === userSelection[i]) {
+        trueTotal++;
+      }
+    }
+
+    console.log(trueTotal);
+    return finalCompare(trueTotal, simArrLength);
+  };
+
+  var finalCompare = function finalCompare(trueTotal, arrLength) {
+    console.log(trueTotal, arrLength);
+
+    if (trueTotal === arrLength) {
+      console.log("Congrats, you won!");
+      updateSelection([]);
+      simonStart();
+    } else {
+      console.log("You lose");
+      updateSimonSelection([]);
+      updateSelection([]);
+    }
   };
 
   return _react.default.createElement("div", null, _react.default.createElement(PanelWrapper, null, _react.default.createElement(Panel, {
-    inputColor: "red"
+    opacity: panelOpacity[0],
+    inputColor: "red",
+    onClick: userChoice,
+    id: 1
   }), _react.default.createElement(Panel, {
-    inputColor: "red"
+    opacity: panelOpacity[1],
+    inputColor: "blue",
+    onClick: userChoice,
+    id: 2
   }), _react.default.createElement(Panel, {
-    inputColor: "red"
+    opacity: panelOpacity[2],
+    inputColor: "green",
+    onClick: userChoice,
+    id: 3
   }), _react.default.createElement(Panel, {
-    inputColor: "red"
+    opacity: panelOpacity[3],
+    inputColor: "yellow",
+    onClick: userChoice,
+    id: 4
   })), _react.default.createElement("button", {
-    onClick: startSimon
-  }, "Start Button "), _react.default.createElement("p", null, counterText), _react.default.createElement("button", {
-    onClick: power
-  }, onText));
+    onClick: simonStart
+  }, "Start Button "), _react.default.createElement("button", {
+    onClick: scoreCompare
+  }, "Confirm Button  "));
 }
 },{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/components/app.js":[function(require,module,exports) {
 "use strict";
@@ -36357,7 +36359,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51429" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61717" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

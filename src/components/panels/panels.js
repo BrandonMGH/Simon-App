@@ -20,82 +20,103 @@ opacity: ${props => props.opacity}
 `
 
 export default function Panels() {
-    const [powerState, setPower] = useState(false)
-    const [onText, setOnText] = useState('Off')
-    const [counterText, updateCounterText] = useState("-")
-    const [win, winSet] = useState(true)
-    const [simonSelection, setSimonSelection] = useState([])
-    const [playerSelection, setPlayerSelection] = useState([])
-    const [panelFlashCount, updateFlashCount ] = useState(0);
-    const [intervalId, setintervaID] = useState(0)
-    const [turnCount, updateTurnCount ] =  useState(1)
-    const [good, updateGood] = useState(true)
+
+    // ** REACT HOOKS ** // 
+    const [simonSelection, updateSimonSelection] = useState([])
+    const [userSelection, updateSelection] = useState([])
+    const [panelOpacity, updateOpacity] = useState([".25", ".25", ".25", ".25"])
 
 
 
-    // let order = [];
-    // let playerOrder = [];
-    // let flash;
-    // let turn;
-    // let good;
-    let compTurn;
-    // let intervalId;
-    // let strict = false;
-    // let noise = true;
-    // let on = false;
-    // let win;
 
-    let power = () => {
-        if(powerState === false){
-            setPower(true)
-            setOnText("On")
-            // console.log(on)
-            updateCounterText("__")
-        } else {
-            setPower(false)
-            setOnText("Off")
-            // console.log(on)
-            updateCounterText("-")
-        }
-    }
-console.log(powerState)
-    let startSimon = () => {
-        if (powerState){
-            console.log("game has started")
-            play();
-        } else {
-            console.log("Power on game first")
-        }
-    }
-
-    let play = () => {
-        winSet(false);
-        setSimonSelection([]);
-        setPlayerSelection([]);
-        updateFlashCount(0);
-        setintervaID(0);
-        updateTurnCount(1);
-        updateCounterText(1)
-        updateGood(true)
-        for(let i = 0; i < 25; i ++){
-            simonSelection.push(Math.floor(Math.random() * 4) + 1);
-        }
-        // setintervaID(setInterval(gameTurn, 800))
+    let simonStart = () => {
+        const updateSelection = Math.floor(Math.random() * panelOpacity.length) + 1
+        simonSelection.push(updateSelection)
         console.log(simonSelection)
+        panelSelection(simonSelection.length);
     }
 
+    let panelSelection = (arrLength) => {
+        console.log(arrLength)
+        if(arrLength > 0){
+            for(let i =0; i < arrLength; i++ ){
+                if (simonSelection[i] === 1) {
+                    updateOpacity(["1", ".25", ".25", ".25"])
+                    // console.log(simonSelection[i])
+                   setTimeout(panelReset, 1000)
+                } else if (simonSelection[i] === 2) {
+                    updateOpacity([".25", "1", ".25", ".25"])
+                    // console.log(simonSelection[i])
+                    setTimeout(panelReset, 1000)
+                } else if (simonSelection[i] === 3) {
+                    updateOpacity([".25", ".25", "1", ".25"])
+                    
+                    // console.log(simonSelection[i])
+                    setTimeout(panelReset, 1000)
+                } else if (simonSelection[i] === 4) {
+                    updateOpacity([".25", ".25", ".25", "1"])
+                    // console.log(simonSelection[i])
+                    setTimeout(panelReset, 1000)
+                }
+            }
+            }
+  
+    }
+
+    let panelReset = () => {
+        let n = simonSelection.length
+        updateOpacity([".25", ".25", ".25", ".25"])
+        panelSelection(n - 1)
+    }
+
+
+    let userChoice = (event) => {
+        let id = event.target.id
+        let parsedID = parseInt(id)
+        userSelection.push(parsedID)
+        console.log(userSelection)
+    }
+
+    let scoreCompare = () => {
+        let trueTotal = 0;
+        let simArrLength = simonSelection.length
+        if (simonSelection.length !== userSelection.length) {
+            return finalCompare(trueTotal, simArrLength)
+        }
+
+        for (let i = 0; i < simArrLength; i++) {
+            if (simonSelection[i] === userSelection[i]) {
+                trueTotal++;
+            }
+        }
+        console.log(trueTotal)
+        return finalCompare(trueTotal, simArrLength)
+
+    }
+
+    let finalCompare = (trueTotal, arrLength) => {
+        console.log(trueTotal, arrLength)
+        if (trueTotal === arrLength) {
+            console.log("Congrats, you won!")
+            updateSelection([]);
+            simonStart(); 
+        } else {
+            console.log("You lose")
+            updateSimonSelection([]);
+            updateSelection([]);
+        }
+    }
 
     return (
         <div>
             <PanelWrapper>
-                <Panel  inputColor="red" ></Panel>
-                <Panel  inputColor="red" ></Panel>
-                <Panel  inputColor="red" ></Panel>
-                <Panel  inputColor="red" ></Panel>
+                <Panel opacity={panelOpacity[0]} inputColor="red" onClick={userChoice} id={1}></Panel>
+                <Panel opacity={panelOpacity[1]} inputColor="blue" onClick={userChoice} id={2}></Panel>
+                <Panel opacity={panelOpacity[2]} inputColor="green" onClick={userChoice} id={3}></Panel>
+                <Panel opacity={panelOpacity[3]} inputColor="yellow" onClick={userChoice} id={4}></Panel>
             </PanelWrapper>
-            <button onClick={startSimon}>Start Button </button>
-            <p>{counterText}</p>
-            <button onClick={power}>{onText}</button>
+            <button onClick={simonStart}>Start Button </button>
+            <button onClick={scoreCompare}>Confirm Button  </button>
 
 
         </div>
