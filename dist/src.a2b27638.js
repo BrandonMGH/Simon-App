@@ -36192,39 +36192,36 @@ function Panels() {
     var updateSelection = Math.floor(Math.random() * panelOpacity.length) + 1;
     simonSelection.push(updateSelection);
     console.log(simonSelection);
-    panelSelection(simonSelection.length);
+    panelSelection();
   };
 
-  var panelSelection = function panelSelection(arrLength) {
-    console.log(arrLength);
-
-    if (arrLength > 0) {
-      for (var i = 0; i < arrLength; i++) {
-        if (simonSelection[i] === 1) {
-          updateOpacity(["1", ".25", ".25", ".25"]); // console.log(simonSelection[i])
-
-          setTimeout(panelReset, 1000);
-        } else if (simonSelection[i] === 2) {
-          updateOpacity([".25", "1", ".25", ".25"]); // console.log(simonSelection[i])
-
-          setTimeout(panelReset, 1000);
-        } else if (simonSelection[i] === 3) {
-          updateOpacity([".25", ".25", "1", ".25"]); // console.log(simonSelection[i])
-
-          setTimeout(panelReset, 1000);
-        } else if (simonSelection[i] === 4) {
-          updateOpacity([".25", ".25", ".25", "1"]); // console.log(simonSelection[i])
-
-          setTimeout(panelReset, 1000);
-        }
+  var panelSelection = function panelSelection() {
+    simonSelection.forEach(function (num) {
+      if (num === 1) {
+        setTimeout(function () {
+          updateOpacity(["1", ".25", ".25", ".25"]);
+        }, num * 1000);
+      } else if (num === 2) {
+        setTimeout(function () {
+          updateOpacity([".25", "1", ".25", ".25"]);
+        }, num * 1000);
+      } else if (num === 3) {
+        setTimeout(function () {
+          updateOpacity([".25", ".25", "1", ".25"]);
+        }, num * 1000);
+      } else {
+        setTimeout(function () {
+          updateOpacity([".25", ".25", ".25", "1"]);
+        }, num * 1000);
       }
-    }
+    }); // callback()
   };
 
   var panelReset = function panelReset() {
-    var n = simonSelection.length;
-    updateOpacity([".25", ".25", ".25", ".25"]);
-    panelSelection(n - 1);
+    console.log("yay"); // let num = 2 
+    // setTimeout(function () {
+    //     updateOpacity([".25", ".25", ".25", ".25"]);
+    // }, num * 1000)
   };
 
   var userChoice = function userChoice(event) {
@@ -36359,7 +36356,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61717" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61925" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -33,40 +33,42 @@ export default function Panels() {
         const updateSelection = Math.floor(Math.random() * panelOpacity.length) + 1
         simonSelection.push(updateSelection)
         console.log(simonSelection)
-        panelSelection(simonSelection.length);
+       panelSelection(); 
     }
 
-    let panelSelection = (arrLength) => {
-        console.log(arrLength)
-        if(arrLength > 0){
-            for(let i =0; i < arrLength; i++ ){
-                if (simonSelection[i] === 1) {
-                    updateOpacity(["1", ".25", ".25", ".25"])
-                    // console.log(simonSelection[i])
-                   setTimeout(panelReset, 1000)
-                } else if (simonSelection[i] === 2) {
-                    updateOpacity([".25", "1", ".25", ".25"])
-                    // console.log(simonSelection[i])
-                    setTimeout(panelReset, 1000)
-                } else if (simonSelection[i] === 3) {
-                    updateOpacity([".25", ".25", "1", ".25"])
-                    
-                    // console.log(simonSelection[i])
-                    setTimeout(panelReset, 1000)
-                } else if (simonSelection[i] === 4) {
-                    updateOpacity([".25", ".25", ".25", "1"])
-                    // console.log(simonSelection[i])
-                    setTimeout(panelReset, 1000)
-                }
+   
+
+    let panelSelection = () => {
+       
+        simonSelection.forEach((num) => {
+            if(num === 1){
+                setTimeout(function () {
+                    updateOpacity(["1", ".25", ".25", ".25"]);
+                }, num * 1000)
+            }else if ( num === 2){
+                setTimeout(function () {
+                    updateOpacity([".25", "1", ".25", ".25"]);
+                },  num * 1000)
+            } else if( num === 3){
+                setTimeout(function () {
+                    updateOpacity([".25", ".25", "1", ".25"]);
+                },  num * 1000)
+            } else {
+                setTimeout(function () {
+                    updateOpacity([".25", ".25", ".25", "1"]);
+                }, num * 1000)
             }
-            }
-  
+        })
+        // callback()
     }
 
     let panelReset = () => {
-        let n = simonSelection.length
-        updateOpacity([".25", ".25", ".25", ".25"])
-        panelSelection(n - 1)
+        console.log("yay")
+        // let num = 2 
+        // setTimeout(function () {
+        //     updateOpacity([".25", ".25", ".25", ".25"]);
+           
+        // }, num * 1000)
     }
 
 
