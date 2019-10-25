@@ -33,8 +33,8 @@ export default function Panels() {
         const updateSelection = Math.floor(Math.random() * 4) + 1
         simonSelection.push(updateSelection)
         console.log(simonSelection)
-        let simonSelectionLength = simonSelection.length - 1
-       panelSelection(simonSelectionLength, simonSelection); 
+        let simonSelectionLength = simonSelection.length
+       panelSelection(0, simonSelectionLength, simonSelection); 
     }
 
     let panelReset = () => {
@@ -47,30 +47,35 @@ export default function Panels() {
     }
 
 
-    let panelSelection = (arrLength, arr) => {
-       
-        if(arrLength >= 0){
-            if(arr[arrLength] === 1){
+
+    let panelSelection = (n, arrLength, arr) => {
+       console.log(n, arrLength, arr)
+        if(n < arrLength){
+            if(arr[n] === 1){
                 setTimeout(function () {
                     updateOpacity(["1", ".25", ".25", ".25"]);
-                    panelSelection(arrLength - 1, arr)
+                    panelSelection(n + 1, arrLength, arr)
                 },  1000)
-            }else if ( arr[arrLength]  === 2){
+            }else if ( arr[n]  === 2){
                 setTimeout(function () {
                     updateOpacity([".25", "1", ".25", ".25"]);
-                    panelSelection(arrLength - 1, arr)
+                    panelSelection(n + 1, arrLength, arr)
                 },  1000)
-            } else if( arr[arrLength]  === 3){
+            } else if( arr[n]  === 3){
                 setTimeout(function () {
                     updateOpacity([".25", ".25", "1", ".25"]);
-                    panelSelection(arrLength - 1, arr)
+                    panelSelection(n + 1, arrLength, arr)
                 },  1000)
             } else {
                 setTimeout(function () {
                     updateOpacity([".25", ".25", ".25", "1"]);
-                    panelSelection(arrLength - 1, arr)
+                    panelSelection(n + 1, arrLength, arr)
                 },  1000)
             }
+        } else if (n === arrLength){
+            setTimeout(function () {
+                updateOpacity([".25", ".25", ".25", ".25"]);
+            }, 1000) 
         }
     }
 
