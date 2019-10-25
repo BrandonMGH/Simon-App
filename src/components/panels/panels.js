@@ -30,36 +30,11 @@ export default function Panels() {
 
 
     let simonStart = () => {
-        const updateSelection = Math.floor(Math.random() * panelOpacity.length) + 1
+        const updateSelection = Math.floor(Math.random() * 4) + 1
         simonSelection.push(updateSelection)
         console.log(simonSelection)
-       panelSelection(); 
-    }
-
-   
-
-    let panelSelection = () => {
-       
-        simonSelection.forEach((num) => {
-            if(num === 1){
-                setTimeout(function () {
-                    updateOpacity(["1", ".25", ".25", ".25"]);
-                }, num * 1000)
-            }else if ( num === 2){
-                setTimeout(function () {
-                    updateOpacity([".25", "1", ".25", ".25"]);
-                },  num * 1000)
-            } else if( num === 3){
-                setTimeout(function () {
-                    updateOpacity([".25", ".25", "1", ".25"]);
-                },  num * 1000)
-            } else {
-                setTimeout(function () {
-                    updateOpacity([".25", ".25", ".25", "1"]);
-                }, num * 1000)
-            }
-        })
-        // callback()
+        let simonSelectionLength = simonSelection.length - 1
+       panelSelection(simonSelectionLength, simonSelection); 
     }
 
     let panelReset = () => {
@@ -70,6 +45,36 @@ export default function Panels() {
            
         // }, num * 1000)
     }
+
+
+    let panelSelection = (arrLength, arr) => {
+       
+        if(arrLength >= 0){
+            if(arr[arrLength] === 1){
+                setTimeout(function () {
+                    updateOpacity(["1", ".25", ".25", ".25"]);
+                    panelSelection(arrLength - 1, arr)
+                },  1000)
+            }else if ( arr[arrLength]  === 2){
+                setTimeout(function () {
+                    updateOpacity([".25", "1", ".25", ".25"]);
+                    panelSelection(arrLength - 1, arr)
+                },  1000)
+            } else if( arr[arrLength]  === 3){
+                setTimeout(function () {
+                    updateOpacity([".25", ".25", "1", ".25"]);
+                    panelSelection(arrLength - 1, arr)
+                },  1000)
+            } else {
+                setTimeout(function () {
+                    updateOpacity([".25", ".25", ".25", "1"]);
+                    panelSelection(arrLength - 1, arr)
+                },  1000)
+            }
+        }
+    }
+
+   
 
 
     let userChoice = (event) => {

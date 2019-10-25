@@ -36189,32 +36189,11 @@ function Panels() {
       updateOpacity = _useState6[1];
 
   var simonStart = function simonStart() {
-    var updateSelection = Math.floor(Math.random() * panelOpacity.length) + 1;
+    var updateSelection = Math.floor(Math.random() * 4) + 1;
     simonSelection.push(updateSelection);
     console.log(simonSelection);
-    panelSelection();
-  };
-
-  var panelSelection = function panelSelection() {
-    simonSelection.forEach(function (num) {
-      if (num === 1) {
-        setTimeout(function () {
-          updateOpacity(["1", ".25", ".25", ".25"]);
-        }, num * 1000);
-      } else if (num === 2) {
-        setTimeout(function () {
-          updateOpacity([".25", "1", ".25", ".25"]);
-        }, num * 1000);
-      } else if (num === 3) {
-        setTimeout(function () {
-          updateOpacity([".25", ".25", "1", ".25"]);
-        }, num * 1000);
-      } else {
-        setTimeout(function () {
-          updateOpacity([".25", ".25", ".25", "1"]);
-        }, num * 1000);
-      }
-    }); // callback()
+    var simonSelectionLength = simonSelection.length - 1;
+    panelSelection(simonSelectionLength, simonSelection);
   };
 
   var panelReset = function panelReset() {
@@ -36222,6 +36201,32 @@ function Panels() {
     // setTimeout(function () {
     //     updateOpacity([".25", ".25", ".25", ".25"]);
     // }, num * 1000)
+  };
+
+  var panelSelection = function panelSelection(arrLength, arr) {
+    if (arrLength >= 0) {
+      if (arr[arrLength] === 1) {
+        setTimeout(function () {
+          updateOpacity(["1", ".25", ".25", ".25"]);
+          panelSelection(arrLength - 1, arr);
+        }, 1000);
+      } else if (arr[arrLength] === 2) {
+        setTimeout(function () {
+          updateOpacity([".25", "1", ".25", ".25"]);
+          panelSelection(arrLength - 1, arr);
+        }, 1000);
+      } else if (arr[arrLength] === 3) {
+        setTimeout(function () {
+          updateOpacity([".25", ".25", "1", ".25"]);
+          panelSelection(arrLength - 1, arr);
+        }, 1000);
+      } else {
+        setTimeout(function () {
+          updateOpacity([".25", ".25", ".25", "1"]);
+          panelSelection(arrLength - 1, arr);
+        }, 1000);
+      }
+    }
   };
 
   var userChoice = function userChoice(event) {
@@ -36356,7 +36361,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61925" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51342" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
