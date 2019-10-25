@@ -3,20 +3,23 @@ import styled from 'styled-components'
 
 // ** STYLED COMPONENTS ** // 
 
+
 const PanelWrapper = styled.section`
 display: grid; 
 grid-template-columns: 1fr 1fr;
+grid-template-rows: 1fr 25px 1fr; 
 justify-items: center;
 align-items: center;
-border-radius: 50%;
+border-radius: 75%;
 background: black; 
-height: 750px;
-width: 750px;
+height: 750px
+width: 750px
+
 `
 
-const Panel = styled.section`
-position: relative; 
 
+
+const Panel = styled.section`
 height: 60%; 
 width: 60%
 padding: 2.5%
@@ -25,6 +28,11 @@ text-align: center;
 border: solid 5px black; 
 background-color: ${props => props.inputColor}
 border-radius: ${props => props.shape}
+cursor: pointer;
+:hover {
+    background-color: ${props => props.hoverColor}
+  }
+
 `
 
 
@@ -128,18 +136,16 @@ export default function Panels() {
     }
 
     return (
-        <div>
             <PanelWrapper>
-                <Panel  inputColor={panelColor[0]} onClick={userChoice} shape="100% 0 0 0" id={1}></Panel>
-                <Panel  inputColor={panelColor[1]} onClick={userChoice} shape="0 100% 0 0 " id={2}></Panel>
+                <Panel  inputColor={panelColor[0]} hoverColor="#9cd6a1" onClick={userChoice} shape="100% 0 0 0" id={1}></Panel>
+                <Panel  inputColor={panelColor[1]} hoverColor="#e0948d" onClick={userChoice} shape="0 100% 0 0 " id={2}></Panel>
                 <button onClick={simonStart}>Start Button </button>
                 <button onClick={scoreCompare}>Confirm Button  </button>
-                <Panel  inputColor={panelColor[2]} onClick={userChoice} shape="0 0 0 100% " id={3}></Panel>
-                <Panel  inputColor={panelColor[3]} onClick={userChoice} shape="0 0 100% 0 " id={4}></Panel>
+                <Panel  inputColor={panelColor[2]} hoverColor="#fff6ab" onClick={userChoice} shape="0 0 0 100% " id={3}></Panel>
+                <Panel  inputColor={panelColor[3]} hoverColor="#918bd6" onClick={userChoice} shape="0 0 100% 0 " id={4}></Panel>
             </PanelWrapper>
             
 
 
-        </div>
     )
 }
