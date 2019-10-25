@@ -7,16 +7,21 @@ const PanelWrapper = styled.section`
 display: grid; 
 grid-template-columns: 1fr 1fr;
 justify-items: center;
+border-radius: 50%;
+background: black; 
+height: 750px;
+width: 750px;
 `
 
 const Panel = styled.section`
+border-radius: 50%;
+height: 50%; 
 width: 50%
 padding: 2.5%
 margin: 2.5%
 text-align: center; 
 border: solid 5px black; 
 background-color: ${props => props.inputColor}
-opacity: ${props => props.opacity}
 `
 
 export default function Panels() {
@@ -24,7 +29,7 @@ export default function Panels() {
     // ** REACT HOOKS ** // 
     const [simonSelection, updateSimonSelection] = useState([])
     const [userSelection, updateSelection] = useState([])
-    const [panelOpacity, updateOpacity] = useState([".25", ".25", ".25", ".25"])
+    const [panelColor, updateColor] = useState(["#3edd4b", "#dd4b3e", "#ffea37", "#4b3edd"])
 
 
 
@@ -37,49 +42,39 @@ export default function Panels() {
        panelSelection(0, simonSelectionLength, simonSelection); 
     }
 
-    let panelReset = () => {
-        console.log("yay")
-        // let num = 2 
-        // setTimeout(function () {
-        //     updateOpacity([".25", ".25", ".25", ".25"]);
-           
-        // }, num * 1000)
-    }
-
-
 
     let panelSelection = (n, arrLength, arr) => {
        console.log(n, arrLength, arr)
         if(n < arrLength){
             if(arr[n] === 1){
                 setTimeout(function () {
-                    updateOpacity(["1", ".25", ".25", ".25"]);
+                    updateColor(["#9cd6a1", "#dd4b3e", "#ffea37", "#4b3edd"]);
                     setTimeout(function () {
-                        updateOpacity([".25", ".25", ".25", ".25"]);
+                        updateColor(["#3edd4b", "#dd4b3e", "#ffea37", "#4b3edd"]);
                     }, 500)
                     panelSelection(n + 1, arrLength, arr)
                 },  1000)
             }else if ( arr[n]  === 2){
                 setTimeout(function () {
-                    updateOpacity([".25", "1", ".25", ".25"]);
+                    updateColor(["#3edd4b", "#e0948d", "#ffea37", "#4b3edd"]);
                     setTimeout(function () {
-                        updateOpacity([".25", ".25", ".25", ".25"]);
+                        updateColor(["#3edd4b", "#dd4b3e", "#ffea37", "#4b3edd"]);
                     }, 500)
                     panelSelection(n + 1, arrLength, arr)
                 },  1000)
             } else if( arr[n]  === 3){
                 setTimeout(function () {
-                    updateOpacity([".25", ".25", "1", ".25"]);
+                    updateColor(["#3edd4b", "#dd4b3e", "#fff6ab", "#4b3edd"]);
                     setTimeout(function () {
-                        updateOpacity([".25", ".25", ".25", ".25"]);
+                        updateColor(["#3edd4b", "#dd4b3e", "#ffea37", "#4b3edd"]);
                     }, 500)
                     panelSelection(n + 1, arrLength, arr)
                 },  1000)
             } else {
                 setTimeout(function () {
-                    updateOpacity([".25", ".25", ".25", "1"]);
+                    updateColor(["#3edd4b", "#dd4b3e", "#ffea37", "#918bd6"]);
                     setTimeout(function () {
-                        updateOpacity([".25", ".25", ".25", ".25"]);
+                        updateColor(["#3edd4b", "#dd4b3e", "#ffea37", "#4b3edd"]);
                     }, 500)
                     panelSelection(n + 1, arrLength, arr)
                 },  1000)
@@ -130,10 +125,10 @@ export default function Panels() {
     return (
         <div>
             <PanelWrapper>
-                <Panel opacity={panelOpacity[0]} inputColor="red" onClick={userChoice} id={1}></Panel>
-                <Panel opacity={panelOpacity[1]} inputColor="blue" onClick={userChoice} id={2}></Panel>
-                <Panel opacity={panelOpacity[2]} inputColor="green" onClick={userChoice} id={3}></Panel>
-                <Panel opacity={panelOpacity[3]} inputColor="yellow" onClick={userChoice} id={4}></Panel>
+                <Panel  inputColor={panelColor[0]} onClick={userChoice} id={1}></Panel>
+                <Panel  inputColor={panelColor[1]} onClick={userChoice} id={2}></Panel>
+                <Panel  inputColor={panelColor[2]} onClick={userChoice} id={3}></Panel>
+                <Panel  inputColor={panelColor[3]} onClick={userChoice} id={4}></Panel>
             </PanelWrapper>
             <button onClick={simonStart}>Start Button </button>
             <button onClick={scoreCompare}>Confirm Button  </button>

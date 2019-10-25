@@ -36141,7 +36141,7 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\nwidth: 50%\npadding: 2.5%\nmargin: 2.5%\ntext-align: center; \nborder: solid 5px black; \nbackground-color: ", "\nopacity: ", "\n"]);
+  var data = _taggedTemplateLiteral(["\nborder-radius: 50%;\nheight: 50%; \nwidth: 50%\npadding: 2.5%\nmargin: 2.5%\ntext-align: center; \nborder: solid 5px black; \nbackground-color: ", "\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -36151,7 +36151,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\ndisplay: grid; \ngrid-template-columns: 1fr 1fr;\njustify-items: center;\n"]);
+  var data = _taggedTemplateLiteral(["\ndisplay: grid; \ngrid-template-columns: 1fr 1fr;\njustify-items: center;\nborder-radius: 50%;\nbackground: black; \nheight: 750px;\nwidth: 750px;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -36167,8 +36167,6 @@ var PanelWrapper = _styledComponents.default.section(_templateObject());
 
 var Panel = _styledComponents.default.section(_templateObject2(), function (props) {
   return props.inputColor;
-}, function (props) {
-  return props.opacity;
 });
 
 function Panels() {
@@ -36183,10 +36181,10 @@ function Panels() {
       userSelection = _useState4[0],
       updateSelection = _useState4[1];
 
-  var _useState5 = (0, _react.useState)([".25", ".25", ".25", ".25"]),
+  var _useState5 = (0, _react.useState)(["#3edd4b", "#dd4b3e", "#ffea37", "#4b3edd"]),
       _useState6 = _slicedToArray(_useState5, 2),
-      panelOpacity = _useState6[0],
-      updateOpacity = _useState6[1];
+      panelColor = _useState6[0],
+      updateColor = _useState6[1];
 
   var simonStart = function simonStart() {
     var updateSelection = Math.floor(Math.random() * 4) + 1;
@@ -36196,46 +36194,39 @@ function Panels() {
     panelSelection(0, simonSelectionLength, simonSelection);
   };
 
-  var panelReset = function panelReset() {
-    console.log("yay"); // let num = 2 
-    // setTimeout(function () {
-    //     updateOpacity([".25", ".25", ".25", ".25"]);
-    // }, num * 1000)
-  };
-
   var panelSelection = function panelSelection(n, arrLength, arr) {
     console.log(n, arrLength, arr);
 
     if (n < arrLength) {
       if (arr[n] === 1) {
         setTimeout(function () {
-          updateOpacity(["1", ".25", ".25", ".25"]);
+          updateColor(["#9cd6a1", "#dd4b3e", "#ffea37", "#4b3edd"]);
           setTimeout(function () {
-            updateOpacity([".25", ".25", ".25", ".25"]);
+            updateColor(["#3edd4b", "#dd4b3e", "#ffea37", "#4b3edd"]);
           }, 500);
           panelSelection(n + 1, arrLength, arr);
         }, 1000);
       } else if (arr[n] === 2) {
         setTimeout(function () {
-          updateOpacity([".25", "1", ".25", ".25"]);
+          updateColor(["#3edd4b", "#e0948d", "#ffea37", "#4b3edd"]);
           setTimeout(function () {
-            updateOpacity([".25", ".25", ".25", ".25"]);
+            updateColor(["#3edd4b", "#dd4b3e", "#ffea37", "#4b3edd"]);
           }, 500);
           panelSelection(n + 1, arrLength, arr);
         }, 1000);
       } else if (arr[n] === 3) {
         setTimeout(function () {
-          updateOpacity([".25", ".25", "1", ".25"]);
+          updateColor(["#3edd4b", "#dd4b3e", "#fff6ab", "#4b3edd"]);
           setTimeout(function () {
-            updateOpacity([".25", ".25", ".25", ".25"]);
+            updateColor(["#3edd4b", "#dd4b3e", "#ffea37", "#4b3edd"]);
           }, 500);
           panelSelection(n + 1, arrLength, arr);
         }, 1000);
       } else {
         setTimeout(function () {
-          updateOpacity([".25", ".25", ".25", "1"]);
+          updateColor(["#3edd4b", "#dd4b3e", "#ffea37", "#918bd6"]);
           setTimeout(function () {
-            updateOpacity([".25", ".25", ".25", ".25"]);
+            updateColor(["#3edd4b", "#dd4b3e", "#ffea37", "#4b3edd"]);
           }, 500);
           panelSelection(n + 1, arrLength, arr);
         }, 1000);
@@ -36283,23 +36274,19 @@ function Panels() {
   };
 
   return _react.default.createElement("div", null, _react.default.createElement(PanelWrapper, null, _react.default.createElement(Panel, {
-    opacity: panelOpacity[0],
-    inputColor: "red",
+    inputColor: panelColor[0],
     onClick: userChoice,
     id: 1
   }), _react.default.createElement(Panel, {
-    opacity: panelOpacity[1],
-    inputColor: "blue",
+    inputColor: panelColor[1],
     onClick: userChoice,
     id: 2
   }), _react.default.createElement(Panel, {
-    opacity: panelOpacity[2],
-    inputColor: "green",
+    inputColor: panelColor[2],
     onClick: userChoice,
     id: 3
   }), _react.default.createElement(Panel, {
-    opacity: panelOpacity[3],
-    inputColor: "yellow",
+    inputColor: panelColor[3],
     onClick: userChoice,
     id: 4
   })), _react.default.createElement("button", {
@@ -36375,7 +36362,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57881" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60853" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
