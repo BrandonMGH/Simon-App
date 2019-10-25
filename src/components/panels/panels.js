@@ -54,29 +54,37 @@ export default function Panels() {
             if(arr[n] === 1){
                 setTimeout(function () {
                     updateOpacity(["1", ".25", ".25", ".25"]);
+                    setTimeout(function () {
+                        updateOpacity([".25", ".25", ".25", ".25"]);
+                    }, 500)
                     panelSelection(n + 1, arrLength, arr)
                 },  1000)
             }else if ( arr[n]  === 2){
                 setTimeout(function () {
                     updateOpacity([".25", "1", ".25", ".25"]);
+                    setTimeout(function () {
+                        updateOpacity([".25", ".25", ".25", ".25"]);
+                    }, 500)
                     panelSelection(n + 1, arrLength, arr)
                 },  1000)
             } else if( arr[n]  === 3){
                 setTimeout(function () {
                     updateOpacity([".25", ".25", "1", ".25"]);
+                    setTimeout(function () {
+                        updateOpacity([".25", ".25", ".25", ".25"]);
+                    }, 500)
                     panelSelection(n + 1, arrLength, arr)
                 },  1000)
             } else {
                 setTimeout(function () {
                     updateOpacity([".25", ".25", ".25", "1"]);
+                    setTimeout(function () {
+                        updateOpacity([".25", ".25", ".25", ".25"]);
+                    }, 500)
                     panelSelection(n + 1, arrLength, arr)
                 },  1000)
             }
-        } else if (n === arrLength){
-            setTimeout(function () {
-                updateOpacity([".25", ".25", ".25", ".25"]);
-            }, 1000) 
-        }
+        } 
     }
 
    

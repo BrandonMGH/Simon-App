@@ -36210,28 +36210,36 @@ function Panels() {
       if (arr[n] === 1) {
         setTimeout(function () {
           updateOpacity(["1", ".25", ".25", ".25"]);
+          setTimeout(function () {
+            updateOpacity([".25", ".25", ".25", ".25"]);
+          }, 500);
           panelSelection(n + 1, arrLength, arr);
         }, 1000);
       } else if (arr[n] === 2) {
         setTimeout(function () {
           updateOpacity([".25", "1", ".25", ".25"]);
+          setTimeout(function () {
+            updateOpacity([".25", ".25", ".25", ".25"]);
+          }, 500);
           panelSelection(n + 1, arrLength, arr);
         }, 1000);
       } else if (arr[n] === 3) {
         setTimeout(function () {
           updateOpacity([".25", ".25", "1", ".25"]);
+          setTimeout(function () {
+            updateOpacity([".25", ".25", ".25", ".25"]);
+          }, 500);
           panelSelection(n + 1, arrLength, arr);
         }, 1000);
       } else {
         setTimeout(function () {
           updateOpacity([".25", ".25", ".25", "1"]);
+          setTimeout(function () {
+            updateOpacity([".25", ".25", ".25", ".25"]);
+          }, 500);
           panelSelection(n + 1, arrLength, arr);
         }, 1000);
       }
-    } else if (n === arrLength) {
-      setTimeout(function () {
-        updateOpacity([".25", ".25", ".25", ".25"]);
-      }, 1000);
     }
   };
 
@@ -36367,7 +36375,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53235" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57881" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
