@@ -7,6 +7,7 @@ const PanelWrapper = styled.section`
 display: grid; 
 grid-template-columns: 1fr 1fr;
 justify-items: center;
+align-items: center;
 border-radius: 50%;
 background: black; 
 height: 750px;
@@ -14,15 +15,19 @@ width: 750px;
 `
 
 const Panel = styled.section`
-border-radius: 50%;
-height: 50%; 
-width: 50%
+position: relative; 
+
+height: 60%; 
+width: 60%
 padding: 2.5%
 margin: 2.5%
 text-align: center; 
 border: solid 5px black; 
 background-color: ${props => props.inputColor}
+border-radius: ${props => props.shape}
 `
+
+
 
 export default function Panels() {
 
@@ -125,13 +130,14 @@ export default function Panels() {
     return (
         <div>
             <PanelWrapper>
-                <Panel  inputColor={panelColor[0]} onClick={userChoice} id={1}></Panel>
-                <Panel  inputColor={panelColor[1]} onClick={userChoice} id={2}></Panel>
-                <Panel  inputColor={panelColor[2]} onClick={userChoice} id={3}></Panel>
-                <Panel  inputColor={panelColor[3]} onClick={userChoice} id={4}></Panel>
+                <Panel  inputColor={panelColor[0]} onClick={userChoice} shape="100% 0 0 0" id={1}></Panel>
+                <Panel  inputColor={panelColor[1]} onClick={userChoice} shape="0 100% 0 0 " id={2}></Panel>
+                <button onClick={simonStart}>Start Button </button>
+                <button onClick={scoreCompare}>Confirm Button  </button>
+                <Panel  inputColor={panelColor[2]} onClick={userChoice} shape="0 0 0 100% " id={3}></Panel>
+                <Panel  inputColor={panelColor[3]} onClick={userChoice} shape="0 0 100% 0 " id={4}></Panel>
             </PanelWrapper>
-            <button onClick={simonStart}>Start Button </button>
-            <button onClick={scoreCompare}>Confirm Button  </button>
+            
 
 
         </div>

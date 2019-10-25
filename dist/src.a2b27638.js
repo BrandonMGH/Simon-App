@@ -36141,7 +36141,7 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\nborder-radius: 50%;\nheight: 50%; \nwidth: 50%\npadding: 2.5%\nmargin: 2.5%\ntext-align: center; \nborder: solid 5px black; \nbackground-color: ", "\n"]);
+  var data = _taggedTemplateLiteral(["\nposition: relative; \n\nheight: 60%; \nwidth: 60%\npadding: 2.5%\nmargin: 2.5%\ntext-align: center; \nborder: solid 5px black; \nbackground-color: ", "\nborder-radius: ", "\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -36151,7 +36151,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\ndisplay: grid; \ngrid-template-columns: 1fr 1fr;\njustify-items: center;\nborder-radius: 50%;\nbackground: black; \nheight: 750px;\nwidth: 750px;\n"]);
+  var data = _taggedTemplateLiteral(["\ndisplay: grid; \ngrid-template-columns: 1fr 1fr;\njustify-items: center;\nalign-items: center;\nborder-radius: 50%;\nbackground: black; \nheight: 750px;\nwidth: 750px;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -36167,6 +36167,8 @@ var PanelWrapper = _styledComponents.default.section(_templateObject());
 
 var Panel = _styledComponents.default.section(_templateObject2(), function (props) {
   return props.inputColor;
+}, function (props) {
+  return props.shape;
 });
 
 function Panels() {
@@ -36276,24 +36278,28 @@ function Panels() {
   return _react.default.createElement("div", null, _react.default.createElement(PanelWrapper, null, _react.default.createElement(Panel, {
     inputColor: panelColor[0],
     onClick: userChoice,
+    shape: "100% 0 0 0",
     id: 1
   }), _react.default.createElement(Panel, {
     inputColor: panelColor[1],
     onClick: userChoice,
+    shape: "0 100% 0 0 ",
     id: 2
-  }), _react.default.createElement(Panel, {
+  }), _react.default.createElement("button", {
+    onClick: simonStart
+  }, "Start Button "), _react.default.createElement("button", {
+    onClick: scoreCompare
+  }, "Confirm Button  "), _react.default.createElement(Panel, {
     inputColor: panelColor[2],
     onClick: userChoice,
+    shape: "0 0 0 100% ",
     id: 3
   }), _react.default.createElement(Panel, {
     inputColor: panelColor[3],
     onClick: userChoice,
+    shape: "0 0 100% 0 ",
     id: 4
-  })), _react.default.createElement("button", {
-    onClick: simonStart
-  }, "Start Button "), _react.default.createElement("button", {
-    onClick: scoreCompare
-  }, "Confirm Button  "));
+  })));
 }
 },{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/components/app.js":[function(require,module,exports) {
 "use strict";
@@ -36362,7 +36368,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60853" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65178" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
