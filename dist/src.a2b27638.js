@@ -36140,8 +36140,38 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _templateObject2() {
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["\nbackground: color:\nfont-size: 1em;\nmargin: 1em;\npadding: 0.25em 1em;\nborder: 2px solid black;\nborder-radius: 3px;\ncursor: pointer;\n"]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\ndisplay:flex;\nmargin-top: 5%; \n"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
   var data = _taggedTemplateLiteral(["\nheight: 60%; \nwidth: 60%\npadding: 2.5%\nmargin: 2.5%\ntext-align: center; \nborder: solid 5px black; \nbackground-color: ", "\nborder-radius: ", "\ncursor: pointer;\n:hover {\n    background-color: ", "\n  }\n\n"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\ndisplay: grid; \ngrid-template-columns: 1fr 1fr;\ngrid-template-rows: 1fr 1fr; \njustify-items: center;\nalign-items: center;\nborder-radius: 75%;\nbackground: black; \nheight: 500px\nwidth: 500px\nmargin-top: 2%\n\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -36151,7 +36181,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\ndisplay: grid; \ngrid-template-columns: 1fr 1fr;\ngrid-template-rows: 1fr 25px 1fr; \njustify-items: center;\nalign-items: center;\nborder-radius: 75%;\nbackground: black; \nheight: 750px\nwidth: 750px\n\n"]);
+  var data = _taggedTemplateLiteral(["\ndisplay: grid; \njustify-items: center;\nalign-items: center;\nfont-family: 'Spicy Rice', cursive;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -36163,15 +36193,21 @@ function _templateObject() {
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 // ** STYLED COMPONENTS ** // 
-var PanelWrapper = _styledComponents.default.section(_templateObject());
+var AppWrapper = _styledComponents.default.body(_templateObject());
 
-var Panel = _styledComponents.default.section(_templateObject2(), function (props) {
+var PanelWrapper = _styledComponents.default.section(_templateObject2());
+
+var Panel = _styledComponents.default.section(_templateObject3(), function (props) {
   return props.inputColor;
 }, function (props) {
   return props.shape;
 }, function (props) {
   return props.hoverColor;
 });
+
+var ButtonWrapper = _styledComponents.default.section(_templateObject4());
+
+var Button = _styledComponents.default.section(_templateObject5());
 
 function Panels() {
   // ** REACT HOOKS ** // 
@@ -36277,7 +36313,7 @@ function Panels() {
     }
   };
 
-  return _react.default.createElement(PanelWrapper, null, _react.default.createElement(Panel, {
+  return _react.default.createElement(AppWrapper, null, _react.default.createElement("h1", null, "SIMON"), _react.default.createElement("p", null, " Start the game by clicking the start button.  Once started, try to keep up with Simon as he picks an ever growing selection of colors each round!"), _react.default.createElement(PanelWrapper, null, _react.default.createElement(Panel, {
     inputColor: panelColor[0],
     hoverColor: "#9cd6a1",
     onClick: userChoice,
@@ -36289,11 +36325,7 @@ function Panels() {
     onClick: userChoice,
     shape: "0 100% 0 0 ",
     id: 2
-  }), _react.default.createElement("button", {
-    onClick: simonStart
-  }, "Start Button "), _react.default.createElement("button", {
-    onClick: scoreCompare
-  }, "Confirm Button  "), _react.default.createElement(Panel, {
+  }), _react.default.createElement(Panel, {
     inputColor: panelColor[2],
     hoverColor: "#fff6ab",
     onClick: userChoice,
@@ -36305,7 +36337,11 @@ function Panels() {
     onClick: userChoice,
     shape: "0 0 100% 0 ",
     id: 4
-  }));
+  })), _react.default.createElement(ButtonWrapper, null, _react.default.createElement(Button, {
+    onClick: simonStart
+  }, "Start Button "), _react.default.createElement(Button, {
+    onClick: scoreCompare
+  }, "Confirm Button  ")));
 }
 },{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/components/app.js":[function(require,module,exports) {
 "use strict";
@@ -36374,7 +36410,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52731" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50953" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
