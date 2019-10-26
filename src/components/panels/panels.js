@@ -14,7 +14,7 @@ font-family: 'Spicy Rice', cursive;
 const PanelWrapper = styled.section`
 display: grid; 
 grid-template-columns: 1fr 1fr;
-grid-template-rows: 1fr 1fr; 
+grid-template-rows: 1fr 1fr;  
 justify-items: center;
 align-items: center;
 border-radius: 75%;
@@ -155,7 +155,7 @@ export default function Panels() {
                 updateSelection([]);
                 simonStart();
                 updateWinLose("--")
-            }, 500)
+            }, 1000)
         } else {
             updateWinLose("INCORRECT")
             setTimeout(function () {
@@ -163,7 +163,7 @@ export default function Panels() {
                 updateSimonSelection([]);
                 updateSelection([]);
                 updateWinLose("--")
-            }, 500)
+            }, 1000)
         }
     }
 

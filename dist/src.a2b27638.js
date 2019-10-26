@@ -36181,7 +36181,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\ndisplay: grid; \ngrid-template-columns: 1fr 1fr;\ngrid-template-rows: 1fr 1fr; \njustify-items: center;\nalign-items: center;\nborder-radius: 75%;\nbackground: black; \nheight: 500px;\nwidth: 500px;\nmargin-top: 2%;\n\n"]);
+  var data = _taggedTemplateLiteral(["\ndisplay: grid; \ngrid-template-columns: 1fr 1fr;\ngrid-template-rows: 1fr 1fr;  \njustify-items: center;\nalign-items: center;\nborder-radius: 75%;\nbackground: black; \nheight: 500px;\nwidth: 500px;\nmargin-top: 2%;\n\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -36331,7 +36331,7 @@ function Panels() {
         updateSelection([]);
         simonStart();
         updateWinLose("--");
-      }, 500);
+      }, 1000);
     } else {
       updateWinLose("INCORRECT");
       setTimeout(function () {
@@ -36339,7 +36339,7 @@ function Panels() {
         updateSimonSelection([]);
         updateSelection([]);
         updateWinLose("--");
-      }, 500);
+      }, 1000);
     }
   };
 
@@ -36514,7 +36514,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54860" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55899" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
