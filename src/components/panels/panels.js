@@ -64,6 +64,7 @@ export default function Panels() {
     const [userSelection, updateSelection] = useState([])
     const [panelColor, updateColor] = useState(["#3edd4b", "#dd4b3e", "#ffea37", "#4b3edd"])
     const [score, updateScore] = useState(0)
+    const [winLoseText, updateWin] = useState("-- ")
 
 
 

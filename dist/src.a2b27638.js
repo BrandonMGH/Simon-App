@@ -36231,6 +36231,11 @@ function Panels() {
       score = _useState8[0],
       updateScore = _useState8[1];
 
+  var _useState9 = (0, _react.useState)("-- "),
+      _useState10 = _slicedToArray(_useState9, 2),
+      winLoseText = _useState10[0],
+      updateWin = _useState10[1];
+
   var simonStart = function simonStart() {
     var updateSelection = Math.floor(Math.random() * 4) + 1;
     simonSelection.push(updateSelection);
@@ -36417,7 +36422,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52217" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54335" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
