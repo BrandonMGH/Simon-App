@@ -36140,8 +36140,18 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+function _templateObject6() {
+  var data = _taggedTemplateLiteral(["\nfont-size: 50px; \n"]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\nbackground: color:\nfont-size: 1em;\nmargin: 1em;\npadding: 0.25em 1em;\nborder: 2px solid black;\nborder-radius: 3px;\ncursor: pointer;\n"]);
+  var data = _taggedTemplateLiteral(["\ncolor: white; \nfont-size: 1em;\nmargin: 2em;\npadding: 0.25em 1em;\nborder: 2px solid white;\nborder-radius: 3px;\ncursor: pointer;\n"]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -36161,7 +36171,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\nheight: 60%; \nwidth: 60%\npadding: 2.5%\nmargin: 2.5%\ntext-align: center; \nborder: solid 5px black; \nbackground-color: ", "\nborder-radius: ", "\ncursor: pointer;\n:hover {\n    background-color: ", "\n  }\n\n"]);
+  var data = _taggedTemplateLiteral(["\nheight: 60%; \nwidth: 60%\ntext-align: center; \nborder: solid 5px black; \nbackground-color: ", "\nborder-radius: ", "\ncursor: pointer;\n:hover {\n    background-color: ", "\n  }\n\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -36171,7 +36181,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\ndisplay: grid; \ngrid-template-columns: 1fr 1fr;\ngrid-template-rows: 1fr 1fr; \njustify-items: center;\nalign-items: center;\nborder-radius: 75%;\nbackground: black; \nheight: 500px\nwidth: 500px\nmargin-top: 2%\n\n"]);
+  var data = _taggedTemplateLiteral(["\ndisplay: grid; \ngrid-template-columns: 1fr 1fr;\ngrid-template-rows: 1fr 1fr; \njustify-items: center;\nalign-items: center;\nborder-radius: 75%;\nbackground: black; \nheight: 500px;\nwidth: 500px;\nmargin-top: 2%;\n\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -36209,6 +36219,8 @@ var ButtonWrapper = _styledComponents.default.section(_templateObject4());
 
 var Button = _styledComponents.default.section(_templateObject5());
 
+var HeaderText = _styledComponents.default.h1(_templateObject6());
+
 function Panels() {
   // ** REACT HOOKS ** // 
   var _useState = (0, _react.useState)([]),
@@ -36231,10 +36243,10 @@ function Panels() {
       score = _useState8[0],
       updateScore = _useState8[1];
 
-  var _useState9 = (0, _react.useState)("-- "),
+  var _useState9 = (0, _react.useState)("--"),
       _useState10 = _slicedToArray(_useState9, 2),
       winLoseText = _useState10[0],
-      updateWin = _useState10[1];
+      updateWinLose = _useState10[1];
 
   var simonStart = function simonStart() {
     var updateSelection = Math.floor(Math.random() * 4) + 1;
@@ -36312,20 +36324,26 @@ function Panels() {
   var finalCompare = function finalCompare(trueTotal, arrLength) {
     console.log(trueTotal, arrLength);
 
-    if (trueTotal === arrLength) {
-      console.log("Congrats, you won!");
+    if (trueTotal === arrLength && arrLength !== 0) {
+      updateWinLose("CORRECT");
       updateScore(score + 100);
-      updateSelection([]);
-      simonStart();
+      setTimeout(function () {
+        updateSelection([]);
+        simonStart();
+        updateWinLose("--");
+      }, 500);
     } else {
-      console.log("You lose");
-      updateScore(0);
-      updateSimonSelection([]);
-      updateSelection([]);
+      updateWinLose("INCORRECT");
+      setTimeout(function () {
+        updateScore(0);
+        updateSimonSelection([]);
+        updateSelection([]);
+        updateWinLose("--");
+      }, 500);
     }
   };
 
-  return _react.default.createElement(AppWrapper, null, _react.default.createElement("h1", null, "SIMON"), _react.default.createElement("p", null, " Start the game by clicking the start button.  Once started, try to keep up with Simon as he picks an ever growing selection of colors each round!"), _react.default.createElement(PanelWrapper, null, _react.default.createElement(Panel, {
+  return _react.default.createElement(AppWrapper, null, _react.default.createElement(HeaderText, null, "SIMON"), _react.default.createElement(PanelWrapper, null, _react.default.createElement(Panel, {
     inputColor: panelColor[0],
     hoverColor: "#9cd6a1",
     onClick: userChoice,
@@ -36349,9 +36367,9 @@ function Panels() {
     onClick: userChoice,
     shape: "0 0 100% 0 ",
     id: 4
-  })), _react.default.createElement(ButtonWrapper, null, _react.default.createElement(Button, {
+  })), _react.default.createElement("p", null, winLoseText), _react.default.createElement(ButtonWrapper, null, _react.default.createElement(Button, {
     onClick: simonStart
-  }, "Start Button "), _react.default.createElement("p", null, "Score:", score, " "), _react.default.createElement(Button, {
+  }, "Start Button "), _react.default.createElement("p", null, "Score:", score), _react.default.createElement(Button, {
     onClick: scoreCompare
   }, "Submit Answer ")));
 }
@@ -36373,7 +36391,79 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function App() {
   return _react.default.createElement(_panels.default, null);
 }
-},{"react":"node_modules/react/index.js","./panels/panels.js":"src/components/panels/panels.js"}],"src/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./panels/panels.js":"src/components/panels/panels.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"src/style.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36387,6 +36477,8 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _app = _interopRequireDefault(require("./components/app.js"));
 
+require("./style.css");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Index(props) {
@@ -36394,7 +36486,7 @@ function Index(props) {
 }
 
 _reactDom.default.render(_react.default.createElement(Index, null), document.getElementById("root"));
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./components/app.js":"src/components/app.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./components/app.js":"src/components/app.js","./style.css":"src/style.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -36422,7 +36514,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54335" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54860" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

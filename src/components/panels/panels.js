@@ -19,9 +19,9 @@ justify-items: center;
 align-items: center;
 border-radius: 75%;
 background: black; 
-height: 500px
-width: 500px
-margin-top: 2%
+height: 500px;
+width: 500px;
+margin-top: 2%;
 
 `
 
@@ -30,8 +30,6 @@ margin-top: 2%
 const Panel = styled.section`
 height: 60%; 
 width: 60%
-padding: 2.5%
-margin: 2.5%
 text-align: center; 
 border: solid 5px black; 
 background-color: ${props => props.inputColor}
@@ -46,14 +44,18 @@ const ButtonWrapper = styled.section`
 display:flex;
 margin-top: 5%; 
 `
-const  Button = styled.section`
-background: color:
+const Button = styled.section`
+color: white; 
 font-size: 1em;
-margin: 1em;
+margin: 2em;
 padding: 0.25em 1em;
-border: 2px solid black;
+border: 2px solid white;
 border-radius: 3px;
 cursor: pointer;
+`
+
+const HeaderText = styled.h1`
+font-size: 50px; 
 `
 
 
@@ -64,7 +66,7 @@ export default function Panels() {
     const [userSelection, updateSelection] = useState([])
     const [panelColor, updateColor] = useState(["#3edd4b", "#dd4b3e", "#ffea37", "#4b3edd"])
     const [score, updateScore] = useState(0)
-    const [winLoseText, updateWin] = useState("-- ")
+    const [winLoseText, updateWinLose] = useState("--")
 
 
 
@@ -146,34 +148,39 @@ export default function Panels() {
 
     let finalCompare = (trueTotal, arrLength) => {
         console.log(trueTotal, arrLength)
-        if (trueTotal === arrLength) {
-            console.log("Congrats, you won!")
+        if (trueTotal === arrLength && arrLength !==0) {
+            updateWinLose("CORRECT")
             updateScore(score + 100)
-            updateSelection([]);
-            simonStart();
-            
+            setTimeout(function () {
+                updateSelection([]);
+                simonStart();
+                updateWinLose("--")
+            }, 500)
         } else {
-            console.log("You lose")
-            updateScore(0)
-            updateSimonSelection([]);
-            updateSelection([]);
+            updateWinLose("INCORRECT")
+            setTimeout(function () {
+                updateScore(0)
+                updateSimonSelection([]);
+                updateSelection([]);
+                updateWinLose("--")
+            }, 500)
         }
     }
 
     return (
         <AppWrapper>
-            <h1>SIMON</h1>
-            <p> Start the game by clicking the start button.  Once started, try to keep up with Simon as he picks an ever growing selection of colors each round!</p>
+            <HeaderText>SIMON</HeaderText>
             <PanelWrapper>
                 <Panel inputColor={panelColor[0]} hoverColor="#9cd6a1" onClick={userChoice} shape="100% 0 0 0" id={1}></Panel>
                 <Panel inputColor={panelColor[1]} hoverColor="#e0948d" onClick={userChoice} shape="0 100% 0 0 " id={2}></Panel>
                 <Panel inputColor={panelColor[2]} hoverColor="#fff6ab" onClick={userChoice} shape="0 0 0 100% " id={3}></Panel>
                 <Panel inputColor={panelColor[3]} hoverColor="#918bd6" onClick={userChoice} shape="0 0 100% 0 " id={4}></Panel>
             </PanelWrapper>
+            <p>{winLoseText}</p>
             <ButtonWrapper>
-            <Button onClick={simonStart}>Start Button </Button>
-            <p>Score:{score} </p>
-            <Button onClick={scoreCompare}>Submit Answer </Button>
+                <Button onClick={simonStart}>Start Button </Button>
+                <p>Score:{score}</p>
+                <Button onClick={scoreCompare}>Submit Answer </Button>
             </ButtonWrapper>
         </AppWrapper>
 
