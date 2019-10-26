@@ -147,11 +147,13 @@ export default function Panels() {
         console.log(trueTotal, arrLength)
         if (trueTotal === arrLength) {
             console.log("Congrats, you won!")
+            updateScore(score + 100)
             updateSelection([]);
             simonStart();
-            score++;
+            
         } else {
             console.log("You lose")
+            updateScore(0)
             updateSimonSelection([]);
             updateSelection([]);
         }

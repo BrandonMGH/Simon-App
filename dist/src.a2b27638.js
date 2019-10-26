@@ -36140,8 +36140,6 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only"); }
-
 function _templateObject5() {
   var data = _taggedTemplateLiteral(["\nbackground: color:\nfont-size: 1em;\nmargin: 1em;\npadding: 0.25em 1em;\nborder: 2px solid black;\nborder-radius: 3px;\ncursor: pointer;\n"]);
 
@@ -36311,11 +36309,12 @@ function Panels() {
 
     if (trueTotal === arrLength) {
       console.log("Congrats, you won!");
+      updateScore(score + 100);
       updateSelection([]);
       simonStart();
-      _readOnlyError("score"), score++;
     } else {
       console.log("You lose");
+      updateScore(0);
       updateSimonSelection([]);
       updateSelection([]);
     }
@@ -36418,7 +36417,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56963" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52217" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
