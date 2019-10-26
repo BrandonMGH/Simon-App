@@ -36140,6 +36140,8 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only"); }
+
 function _templateObject5() {
   var data = _taggedTemplateLiteral(["\nbackground: color:\nfont-size: 1em;\nmargin: 1em;\npadding: 0.25em 1em;\nborder: 2px solid black;\nborder-radius: 3px;\ncursor: pointer;\n"]);
 
@@ -36193,7 +36195,7 @@ function _templateObject() {
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 // ** STYLED COMPONENTS ** // 
-var AppWrapper = _styledComponents.default.body(_templateObject());
+var AppWrapper = _styledComponents.default.section(_templateObject());
 
 var PanelWrapper = _styledComponents.default.section(_templateObject2());
 
@@ -36225,6 +36227,11 @@ function Panels() {
       _useState6 = _slicedToArray(_useState5, 2),
       panelColor = _useState6[0],
       updateColor = _useState6[1];
+
+  var _useState7 = (0, _react.useState)(0),
+      _useState8 = _slicedToArray(_useState7, 2),
+      score = _useState8[0],
+      updateScore = _useState8[1];
 
   var simonStart = function simonStart() {
     var updateSelection = Math.floor(Math.random() * 4) + 1;
@@ -36306,6 +36313,7 @@ function Panels() {
       console.log("Congrats, you won!");
       updateSelection([]);
       simonStart();
+      _readOnlyError("score"), score++;
     } else {
       console.log("You lose");
       updateSimonSelection([]);
@@ -36339,9 +36347,9 @@ function Panels() {
     id: 4
   })), _react.default.createElement(ButtonWrapper, null, _react.default.createElement(Button, {
     onClick: simonStart
-  }, "Start Button "), _react.default.createElement(Button, {
+  }, "Start Button "), _react.default.createElement("p", null, "Score:", score, " "), _react.default.createElement(Button, {
     onClick: scoreCompare
-  }, "Confirm Button  ")));
+  }, "Submit Answer ")));
 }
 },{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/components/app.js":[function(require,module,exports) {
 "use strict";
@@ -36410,7 +36418,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50953" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56963" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

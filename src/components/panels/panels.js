@@ -4,7 +4,7 @@ import styled from 'styled-components'
 // ** STYLED COMPONENTS ** // 
 
 
-const AppWrapper = styled.body`
+const AppWrapper = styled.section`
 display: grid; 
 justify-items: center;
 align-items: center;
@@ -63,6 +63,7 @@ export default function Panels() {
     const [simonSelection, updateSimonSelection] = useState([])
     const [userSelection, updateSelection] = useState([])
     const [panelColor, updateColor] = useState(["#3edd4b", "#dd4b3e", "#ffea37", "#4b3edd"])
+    const [score, updateScore] = useState(0)
 
 
 
@@ -148,6 +149,7 @@ export default function Panels() {
             console.log("Congrats, you won!")
             updateSelection([]);
             simonStart();
+            score++;
         } else {
             console.log("You lose")
             updateSimonSelection([]);
@@ -167,7 +169,8 @@ export default function Panels() {
             </PanelWrapper>
             <ButtonWrapper>
             <Button onClick={simonStart}>Start Button </Button>
-            <Button onClick={scoreCompare}>Confirm Button  </Button>
+            <p>Score:{score} </p>
+            <Button onClick={scoreCompare}>Submit Answer </Button>
             </ButtonWrapper>
         </AppWrapper>
 
