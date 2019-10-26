@@ -19,7 +19,7 @@ Try the Simon game out for yourself and see how long you can keep up with simon.
 
 ## APP LINK ## 
 
-https://app.netlify.com/sites/compassionate-lamarr-820db9/overview
+https://compassionate-lamarr-820db9.netlify.com/
 
 ## Author ## 
  Brandon Harris
